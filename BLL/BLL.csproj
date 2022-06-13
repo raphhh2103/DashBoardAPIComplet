@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DashBoardAPI\DashBoardAPI.csproj" />
+    <ProjectReference Include="..\DashBoardDB\DashBoardDAL.csproj" />
   </ItemGroup>
 
 </Project>
