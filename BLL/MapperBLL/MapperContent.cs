@@ -10,6 +10,11 @@ namespace BLL.MapperBLL
 {
     internal class MapperContent
     {
+        /// <summary>
+        /// converti un ContentEntity en ContentAPI
+        /// </summary>
+        /// <param name="contentEntity"></param>
+        /// <returns>content APi</returns>
         public ContentAPI ToApi(ContentEntity contentEntity)
         {
             ContentAPI res = new ContentAPI();
@@ -19,6 +24,11 @@ namespace BLL.MapperBLL
             res.TitleBoard = MB.ToApi(contentEntity.TitleBoard);
             return res;
         }
+        /// <summary>
+        /// converti un ContentAPi en Content Entity
+        /// </summary>
+        /// <param name="contentAPI"></param>
+        /// <returns>content entity</returns>
         public ContentEntity ToEntity(ContentAPI contentAPI)
         {
             ContentEntity res = new ContentEntity();
