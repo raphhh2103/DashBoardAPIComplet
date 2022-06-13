@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MapperBLL\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DashBoardAPI\DashBoardAPI.csproj" />
   </ItemGroup>
 
 </Project>
