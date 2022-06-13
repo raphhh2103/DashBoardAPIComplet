@@ -10,7 +10,11 @@ namespace BLL.MapperBLL
 {
     internal class MapperTeam
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="teamEntity"></param>
+        /// <returns></returns>
         public TeamAPI ToApi(TeamEntity teamEntity)
         {
             TeamAPI res = new TeamAPI();
@@ -19,6 +23,19 @@ namespace BLL.MapperBLL
             res.TeamUsers = (IEnumerable<UserAPI>)teamEntity.TeamUsers;
 
             return res;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="teamAPI"></param>
+        /// <returns></returns>
+        public TeamEntity ToEntity(TeamAPI teamAPI)
+        {
+            TeamEntity res = new TeamEntity();
+            res.Id = teamAPI.Id;
+            res.Name=teamAPI.Name;
+            res.TeamUsers = (IEnumerable<TeamEntity>)teamAPI.TeamUsers;
+
         }
     }
 }
