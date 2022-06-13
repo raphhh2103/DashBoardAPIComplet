@@ -8,7 +8,8 @@ namespace DashBoardAPI.ModelsAPI
 
         public string Name { get; set; }
 
-        public IEnumerable<UserAPI> MyProperty { get; set; }
+        public IEnumerable<UserAPI> TeamUsers { get; set; }
+      
 
 
 
