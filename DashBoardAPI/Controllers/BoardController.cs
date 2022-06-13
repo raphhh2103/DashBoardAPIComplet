@@ -16,7 +16,7 @@ namespace DashBoardAPI.Controllers
         public IActionResult BoardCreate(BoardEntity board)
         {
             UserEntity user = new UserEntity();
-            br.Create(board.Title,user);
+            br.Create(board.Title,board.UserOwner);
 
             return Ok();
         }

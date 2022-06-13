@@ -15,6 +15,8 @@ namespace DashBoardDAL.Repositories
             b.Title = title;
             b.Contents = new List<ContentEntity>();
             b.UserOwner = user;
+           
+            //b.t
             using (DBConnect db = new DBConnect())
             {
                 db.Board.Add(b);
