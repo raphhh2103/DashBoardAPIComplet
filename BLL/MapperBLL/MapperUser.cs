@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL.MapperBLL
 {
-    internal class MapperUser
+    internal class MapperUser 
     {
         /// <summary>
         /// converti un userAPI en UserEntity 
