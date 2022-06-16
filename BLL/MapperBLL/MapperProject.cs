@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DashBoardAPI.ModelsAPI;
+using BLL.Models;
+using BLL.Services;
 using DashBoardDAL.Entities;
 
 namespace BLL.MapperBLL
 {
-    internal class MapperProject
+    public static class MapperProject
     {
         /// <summary>
         /// converti un projectEntity en projectAPI
         /// </summary>
         /// <param name="projectEntity"></param>
         /// <returns>projectAPi</returns>
-        public ProjectAPI ToApi (ProjectEntity projectEntity)
+        public static ProjectBLL ToApi (this ProjectEntity projectEntity)
         {
-            ProjectAPI res = new ProjectAPI ();
+            ProjectBLL res = new ProjectBLL();
             res.Id = projectEntity.Id;
             res.NameProject = projectEntity.NameProject;
-            res.TeamUsers = (IEnumerable<UserAPI>)projectEntity.TeamsUsers;
+            res.TeamUsers = projectEntity.TeamsUsers.Select(d=> d.Id);
+            //res.TeamUsers = (IEnumerable<UserAPI>)projectEntity.TeamsUsers;
 
             return res;
         }
@@ -30,12 +32,18 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="projectAPI"></param>
         /// <returns>project entity</returns>
-        public ProjectEntity ToEntity (ProjectAPI projectAPI)
+        public static ProjectEntity ToEntity ( this ProjectBLL projectAPI)
         {
             ProjectEntity res = new ProjectEntity();
             res.Id = projectAPI.Id;
             res.NameProject = projectAPI.NameProject;
-            res.TeamsUsers = (IEnumerable<UserEntity>)projectAPI.TeamUsers;
+            UserService US = new UserService();
+            //res.TeamsUsers = projectAPI.TeamUsers;
+            foreach (var item in projectAPI.TeamUsers)
+            {
+                res.TeamsUsers.ToList().Add(MapperUser.ToEntity(US.GetOne(item)));
+            }
+            //res.TeamsUsers = (IEnumerable<UserEntity>)projectAPI.TeamUsers;
             return res;
         }
 

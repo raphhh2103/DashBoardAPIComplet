@@ -18,9 +18,9 @@ namespace DashBoardDAL.Entities
         // a deplacer ! 
         public string Salt { get; set; }
 
-
+        //public int Boards { get; set; }
         public IEnumerable<BoardEntity> Boards { get; set; }
-
+        //public int Teams { get; set; }
         public IEnumerable<TeamEntity> Teams { get; set; }
 
     }

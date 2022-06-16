@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DashBoardDAL.Entities.TeamEntity">
-    <Position X="10.25" Y="1.75" Width="1.5" />
+    <Position X="16.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\TeamEntity.cs</FileName>
@@ -31,7 +31,7 @@
   <Class Name="DashBoardDAL.Entities.UserEntity">
     <Position X="12" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACCAAAADAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <HashCode>AABCCAAAADAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Entities\UserEntity.cs</FileName>
     </TypeIdentifier>
   </Class>

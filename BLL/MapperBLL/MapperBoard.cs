@@ -1,4 +1,4 @@
-﻿using DashBoardAPI.ModelsAPI;
+﻿using BLL.Models;
 using DashBoardDAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,22 +8,21 @@ using System.Threading.Tasks;
 
 namespace BLL.MapperBLL
 {
-    internal class MapperBoard
+    public static class MapperBoard
     {
         /// <summary>
         /// converti un BoardAPI en BoardEntity
         /// </summary>
         /// <param name="boardAPI"></param>
         /// <returns>boardEntity</returns>
-        public BoardEntity ToEntity(BoardAPI boardAPI)
+        public static BoardEntity ToEntity( this BoardBLL boardAPI)
         {
             BoardEntity res = new BoardEntity();
-            MapperUser mu = new MapperUser();
 
             res.Id = boardAPI.Id;
             res.Title = boardAPI.Title;
-            res.UserOwner = mu.ToEntity(boardAPI.UserOwner);
-            res.Contents = (IEnumerable<ContentEntity>)boardAPI.Contents;
+            res.UserOwner = MapperUser.ToEntity(boardAPI.UserOwner);
+            //res.Contents = (IEnumerable<ContentEntity>)boardAPI.Contents;
             return res;
         }
         /// <summary>
@@ -31,14 +30,13 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="boardEntity"></param>
         /// <returns>Board API</returns>
-        public BoardAPI ToApi(BoardEntity boardEntity)
+        public static BoardBLL ToApi( this BoardEntity boardEntity)
         {
-            BoardAPI res = new BoardAPI();
-            MapperUser mu = new MapperUser();
+            BoardBLL res = new BoardBLL();
             res.Id = boardEntity.Id;
             res.Title = boardEntity.Title;
-            res.UserOwner = mu.ToApi(boardEntity.UserOwner);
-            res.Contents = (IEnumerable<ContentAPI>)boardEntity.Contents;
+            res.UserOwner = MapperUser.ToApi(boardEntity.UserOwner);
+            //res.Contents = (IEnumerable<ContentAPI>)boardEntity.Contents;
             return res;
         }
     }

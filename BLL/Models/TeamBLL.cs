@@ -4,14 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DashBoardDAL.Entities
+namespace BLL.Models
 {
-    public class TeamEntity
+    public class TeamBLL
     {
+
         public int Id { get; set; }
+
         public string Name { get; set; }
 
-        //public int TeamUsers { get; set; }
-        public IEnumerable<UserEntity> TeamUsers { get; set; }
+        public IEnumerable<int> TeamUsers { get; set; }
+        //public IEnumerable<UserBLL> TeamUsers { get; set; }
+
+
+
     }
 }

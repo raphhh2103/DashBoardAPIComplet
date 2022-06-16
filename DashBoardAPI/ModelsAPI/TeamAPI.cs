@@ -8,7 +8,10 @@ namespace DashBoardAPI.ModelsAPI
 
         public string Name { get; set; }
 
-        public IEnumerable<UserAPI> TeamUsers { get; set; }
+
+        public IEnumerable<int> TeamUsers { get; set; }// recuperer l'id ! 
+
+        //public IEnumerable<UserAPI> TeamUsers { get; set; }
       
 
 

@@ -1,6 +1,9 @@
-﻿using DashBoardDAL.Entities;
+﻿using BLL.Services;
+using DashBoardAPI.ModelsAPI;
+using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using BLL.MapperBLL;
 
 namespace DashBoardAPI.Controllers
 {
@@ -8,11 +11,11 @@ namespace DashBoardAPI.Controllers
     [Route("Team")]
     public class TeamController : ControllerBase
     {
-
-        TeamRepository tr = new TeamRepository();
+        TeamService tr = new TeamService();
+        //TeamRepository tr = new TeamRepository();
 
         [HttpPost]
-        public IActionResult CreateTeam(TeamEntity team)
+        public IActionResult CreateTeam(TeamAPI team)
         {
             tr.Create(team.Name);
 
@@ -22,9 +25,9 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneTeam(int id)
         {
-            tr.GetOne(id);
+           TeamAPI  result =  tr.GetOne(id).ToApi();
 
-            return Ok();
+            return Ok(result);
         }
         [HttpGet]
         public IActionResult GetAllTeam()
@@ -32,7 +35,7 @@ namespace DashBoardAPI.Controllers
             return Ok(tr.GetAll());
         }
         [HttpPut("{team}")]
-        public IActionResult UpdateTeam(TeamEntity team)
+        public IActionResult UpdateTeam(TeamAPI team)
         {
             tr.Update(team);
 
