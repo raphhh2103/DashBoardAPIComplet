@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BLL.Services
 {
     public class TeamService
@@ -17,12 +18,18 @@ namespace BLL.Services
             return  tr.GetOne(id).ToApi();
         }
 
-        public void Create(string name)
+        public bool Create(string name)
+        { 
+            TeamRepository tr = new TeamRepository();
+            return tr.Create(name);
+        }
+
+        public object GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public object GetAll()
+        public void Update(TeamBLL team)
         {
             throw new NotImplementedException();
         }

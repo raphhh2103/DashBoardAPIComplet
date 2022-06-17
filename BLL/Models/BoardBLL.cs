@@ -11,7 +11,7 @@ namespace BLL.Models
 
         public UserBLL UserOwner { get; set; }
 
-        public int Contents { get; set; }
+        public IEnumerable<int> Contents { get; set; }
         //public IEnumerable<ContentBLL> Contents { get; set; }
     }
 }

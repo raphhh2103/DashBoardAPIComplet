@@ -3,7 +3,7 @@ using DashBoardAPI.ModelsAPI;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using BLL.MapperBLL;
+using DashBoardAPI.MapperAPI;
 
 namespace DashBoardAPI.Controllers
 {
@@ -25,7 +25,7 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneTeam(int id)
         {
-           TeamAPI  result =  tr.GetOne(id).ToApi();
+           TeamAPI  result =  tr.GetOne(id).ToAPI();
 
             return Ok(result);
         }

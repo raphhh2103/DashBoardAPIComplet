@@ -22,7 +22,7 @@ namespace BLL.MapperBLL
             res.Id = boardAPI.Id;
             res.Title = boardAPI.Title;
             res.UserOwner = MapperUser.ToEntity(boardAPI.UserOwner);
-            //res.Contents = (IEnumerable<ContentEntity>)boardAPI.Contents;
+            res.Contents = (IEnumerable<ContentEntity>)boardAPI.Contents;
             return res;
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace BLL.MapperBLL
             res.Id = boardEntity.Id;
             res.Title = boardEntity.Title;
             res.UserOwner = MapperUser.ToApi(boardEntity.UserOwner);
-            //res.Contents = (IEnumerable<ContentAPI>)boardEntity.Contents;
+            res.Contents = (IEnumerable<int>)boardEntity.Contents;
             return res;
         }
     }
