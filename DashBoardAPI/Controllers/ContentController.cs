@@ -1,4 +1,5 @@
-﻿using DashBoardDAL.Entities;
+﻿using BLL.Services;
+using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace DashBoardAPI.Controllers
     [Route("Content")]
     public class ContentController : ControllerBase
     {
-        ContentRepository cr = new ContentRepository();
+        ContentService cr = new ContentService();
 
         [HttpPost]
         public IActionResult ContentCreate( BoardEntity be)

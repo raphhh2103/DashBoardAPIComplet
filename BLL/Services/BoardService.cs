@@ -1,5 +1,6 @@
 ﻿using BLL.MapperBLL;
 using BLL.Models;
+using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,19 @@ namespace BLL.Services
             return br.GetOne(id).ToApi();
         }
 
+        public void Create(string title, UserEntity userOwner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(BoardEntity board)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

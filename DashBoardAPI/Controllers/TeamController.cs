@@ -37,7 +37,7 @@ namespace DashBoardAPI.Controllers
         [HttpPut("{team}")]
         public IActionResult UpdateTeam(TeamAPI team)
         {
-            tr.Update(team);
+            tr.Update(team.ToBll());
 
             return Ok();
         }

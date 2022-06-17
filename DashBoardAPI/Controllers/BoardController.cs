@@ -1,4 +1,5 @@
-﻿using DashBoardDAL.Entities;
+﻿using BLL.Services;
+using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DashBoardAPI.Controllers
     [Route("Board")]
     public class BoardController : ControllerBase
     {
-        BoardRepository br = new BoardRepository();
+        BoardService br = new BoardService();
 
 
         [HttpPost]

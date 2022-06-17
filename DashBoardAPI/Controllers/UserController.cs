@@ -1,4 +1,5 @@
 ﻿
+using BLL.Services;
 using DashBoardAPI.Services;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
@@ -12,7 +13,7 @@ namespace DashBoardAPI.Controllers
     public class UserController : ControllerBase
     {
             //Context.Context c = new Context.Context();
-        UserRepository ur = new UserRepository();
+        UserService ur = new UserService();
 
         [HttpPost]
         public IActionResult UserCreate(UserEntity user)

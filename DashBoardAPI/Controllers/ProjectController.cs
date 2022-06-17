@@ -1,4 +1,5 @@
-﻿using DashBoardDAL.Entities;
+﻿using BLL.Services;
+using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace DashBoardAPI.Controllers
     public class ProjectController : ControllerBase
     {
 
-        ProjectRepository pr = new ProjectRepository(); 
+        ProjectService pr = new ProjectService(); 
 
         [HttpPost]
         public IActionResult CreateProject(ProjectEntity pe)
