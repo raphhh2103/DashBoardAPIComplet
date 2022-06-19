@@ -21,19 +21,30 @@ namespace BLL.Services
             return ur.GetOne(id).ToApi();
         }
 
-        public void Create(string email, string pseudo, string v1, string v2)
+        public bool Create(string email, string pseudo, string v1, string v2)
         {
-            throw new NotImplementedException();
+            UserRepository ur = new UserRepository();
+            return ur.Create(email, pseudo, v1, v2);
         }
 
-        public object GetAll()
+        public IEnumerator<UserBLL> GetAll()
         {
-            throw new NotImplementedException();
+            UserRepository ur = new UserRepository();
+            IEnumerable<UserBLL> list = new List<UserBLL>();
+            foreach (UserEntity user in ur.GetAll())
+            {
+                list.ToList().Add(user.ToApi());
+            }
+             //ur.GetAll();
+
+            return (IEnumerator<UserBLL>)list;
+
         }
 
         public void Update(UserEntity user)
         {
-            throw new NotImplementedException();
+            UserRepository ur =new UserRepository();
+            ur.Update(user);
         }
     }
 }
