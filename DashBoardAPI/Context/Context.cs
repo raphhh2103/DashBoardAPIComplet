@@ -1,5 +1,6 @@
 ﻿using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
+using System.Linq;
 
 namespace DashBoardAPI.Context
 {
@@ -28,7 +29,7 @@ namespace DashBoardAPI.Context
         public void CreateUser(UserEntity u)
         {
 
-                ur.Create(u.Pseudo,u.Email,u.PssWd,u.Salt);
+                ur.Create(u, u.Teams.Select(t => t.Id).ToList());
         }
        public void GetOneUser(int id)
         {

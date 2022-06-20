@@ -33,7 +33,7 @@ namespace DashBoardDAL.Config
 
 
             //FK -> Many to one ... un user peut avoir plusieurs boards 
-            builder.HasMany<BoardEntity>(d => d.Boards).WithOne(b => b.UserOwner).HasForeignKey(q=>q.Id);
+            builder.HasMany<BoardEntity>(d => d.Boards).WithOne(b => b.UserOwner).HasForeignKey(q=>q.UserOwnerId);
             builder.HasMany<TeamEntity>(t => t.Teams).WithMany(u => u.TeamUsers);
         
 

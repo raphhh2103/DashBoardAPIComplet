@@ -21,7 +21,7 @@ namespace DashBoardDAL.Config
             builder.HasIndex(x => x.Title);
 
 
-            builder.HasOne<UserEntity>(t=>t.UserOwner).WithMany(x => x.Boards).HasForeignKey(x => x.Id);
+            builder.HasOne<UserEntity>(t=>t.UserOwner).WithMany(x => x.Boards).HasForeignKey(x => x.UserOwnerId);
 
             builder.HasMany<ContentEntity>(d => d.Contents).WithOne(d => d.TitleBoard).HasForeignKey(x => x.Id);
         }

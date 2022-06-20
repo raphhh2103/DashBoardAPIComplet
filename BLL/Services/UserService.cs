@@ -21,10 +21,12 @@ namespace BLL.Services
             return ur.GetOne(id).ToApi();
         }
 
-        public bool Create(string email, string pseudo, string v1, string v2)
+        public bool Create(UserBLL user, byte[] salt)
         {
             UserRepository ur = new UserRepository();
-            return ur.Create(email, pseudo, v1, v2);
+            UserEntity entity = user.ToEntity();
+            entity.Salt = Encoding.UTF8.GetString(salt);
+            return ur.Create(entity, user.Teams);
         }
 
         public IEnumerator<UserBLL> GetAll()

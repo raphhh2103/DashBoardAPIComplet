@@ -12,7 +12,7 @@ namespace DashBoardAPI.ModelsAPI
         public string PassWord { get; set; }
 
         //public IEnumerable<BoardAPI> Boards { get; set; }
-        public IEnumerable<int> Boards { get; set; }
+        public IEnumerable<int>? Boards { get; set; }
 
         //public IEnumerable<TeamAPI> Teams { get; set; }
         public IEnumerable<int> Teams { get; set; }

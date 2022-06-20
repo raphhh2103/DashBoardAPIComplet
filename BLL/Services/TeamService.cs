@@ -18,10 +18,10 @@ namespace BLL.Services
             return  tr.GetOne(id).ToApi();
         }
 
-        public bool Create(string name)
+        public TeamBLL Create(string name)
         { 
             TeamRepository tr = new TeamRepository();
-            return tr.Create(name);
+            return tr.Create(name).ToApi();
         }
 
         public object GetAll()

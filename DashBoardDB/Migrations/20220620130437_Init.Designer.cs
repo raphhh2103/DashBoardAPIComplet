@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DashBoardDAL.Migrations
 {
     [DbContext(typeof(DBConnect))]
-    [Migration("20220510080038_updateRepo")]
-    partial class updateRepo
+    [Migration("20220620130437_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,15 +24,22 @@ namespace DashBoardDAL.Migrations
             modelBuilder.Entity("DashBoardDAL.Entities.BoardEntity", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("UserOwnerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id")
                         .HasName("PK_Board");
 
                     b.HasIndex("Title");
+
+                    b.HasIndex("UserOwnerId");
 
                     b.ToTable("BoardEntity");
                 });
@@ -109,6 +116,10 @@ namespace DashBoardDAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id")
                         .HasName("PK_User");
 
@@ -144,7 +155,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.UserEntity", "UserOwner")
                         .WithMany("Boards")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("UserOwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

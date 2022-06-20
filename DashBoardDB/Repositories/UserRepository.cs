@@ -16,21 +16,23 @@ namespace DashBoardDAL.Repositories
         /// <param name="pseudo"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public bool Create(string mail, string pseudo, string pass,string salt)
+        public bool Create(UserEntity entity, IEnumerable<int> teamIds)
         {
-            UserEntity r = new UserEntity();
-            r.Email = mail;
-            r.Pseudo = pseudo;
-            r.PssWd = pass;
-            r.Salt = salt;
-            r.Teams = new List<TeamEntity>();
-            r.Boards = new List<BoardEntity>();
+
+           //  TeamRepository tr = new TeamRepository() ;
+           //TeamEntity tm =  tr.Create("default");
+           // tm.TeamUsers = new List<UserEntity>() { r };
+           // tr.Update(tm);
+           // r.Teams.ToList<TeamEntity>().Add(tm);
             using (DBConnect db = new DBConnect())
             {
-                db.User.Add(r);
+                entity.Teams = teamIds.Select(id => db.team.First(t => t.Id == id)).ToList();
+                db.User.Add(entity);
                 db.SaveChanges();
-                return true;
             }
+            BoardRepository br = new BoardRepository();
+            BoardEntity be =  br.Create("default", entity);
+            return true;
 
         }
         /// <summary>

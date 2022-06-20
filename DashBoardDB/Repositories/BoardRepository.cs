@@ -9,12 +9,12 @@ namespace DashBoardDAL.Repositories
 {
     public class BoardRepository : IRepository<BoardEntity>
     {
-        public bool Create(string title, UserEntity user)
+        public BoardEntity Create(string title, UserEntity user)
         {
             BoardEntity b = new BoardEntity();
             b.Title = title;
             b.Contents = new List<ContentEntity>();
-            b.UserOwner = user;
+            b.UserOwnerId = user.Id;
            
             //b.t
             using (DBConnect db = new DBConnect())
@@ -23,7 +23,7 @@ namespace DashBoardDAL.Repositories
                 db.SaveChanges();
 
             }
-            return true;
+            return b;
         }
 
         public bool Delete(int id)

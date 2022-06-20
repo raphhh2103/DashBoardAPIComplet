@@ -1,4 +1,5 @@
 ﻿using DashBoardDAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace DashBoardDAL.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool Create(string name)
+        public TeamEntity Create(string name)
         {
             TeamEntity tm = new TeamEntity();
 
@@ -25,7 +26,7 @@ namespace DashBoardDAL.Repositories
                 db.SaveChanges();
                 //return true;
             }
-            return true;
+            return tm;
         }
         /// <summary>
         /// 
@@ -67,7 +68,7 @@ namespace DashBoardDAL.Repositories
             TeamEntity m = new TeamEntity();
             using (DBConnect db = new DBConnect())
             {
-                m = db.team.Where(p => p.Id == id).FirstOrDefault();
+                m = db.team.Include(t => t.TeamUsers).Where(p => p.Id == id).FirstOrDefault();
 
             }
                 return m;

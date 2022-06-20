@@ -22,15 +22,22 @@ namespace DashBoardDAL.Migrations
             modelBuilder.Entity("DashBoardDAL.Entities.BoardEntity", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("UserOwnerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id")
                         .HasName("PK_Board");
 
                     b.HasIndex("Title");
+
+                    b.HasIndex("UserOwnerId");
 
                     b.ToTable("BoardEntity");
                 });
@@ -146,7 +153,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.UserEntity", "UserOwner")
                         .WithMany("Boards")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("UserOwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

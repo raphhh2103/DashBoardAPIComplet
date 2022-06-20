@@ -21,5 +21,21 @@ namespace DashBoardAPI.MapperAPI
 
         }
 
+        public static UserBLL ToBll(this UserAPI model)
+        {
+            return new UserBLL()
+            {
+                Id = model.Id,
+                Pseudo = model.Pseudo,
+                PassWord = model.PassWord,
+                Email = model.Email,
+                //Boards = model.Boards,
+                Teams = model.Teams,
+                //foireux ! faire a la demande
+                //Teams = model.Teams.Select(t=>t.ToApi())
+            };
+
+        }
+
     }
 }

@@ -1,5 +1,8 @@
 ﻿
+using BLL.Models;
 using BLL.Services;
+using DashBoardAPI.MapperAPI;
+using DashBoardAPI.ModelsAPI;
 using DashBoardAPI.Services;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
@@ -16,11 +19,14 @@ namespace DashBoardAPI.Controllers
         UserService ur = new UserService();
 
         [HttpPost]
-        public IActionResult UserCreate(UserEntity user)
+        public IActionResult UserCreate(UserAPI user)
         {
             byte[] s = Crypto.GenerateSalt();
+            UserBLL u = user.ToBll();
+
+            u.PassWord = Crypto.AshPassword(s, user.PassWord);
             
-            ur.Create(user.Email,user.Pseudo, Crypto.AshPassword(s, user.PssWd),Convert.ToBase64String(s));
+            ur.Create(u, s);
 
             return Ok();
         }

@@ -21,7 +21,7 @@ namespace BLL.MapperBLL
             TeamBLL res = new TeamBLL();
             res.Id = teamEntity.Id;
             res.Name = teamEntity.Name;
-            res.TeamUsers = (IEnumerable<int>)teamEntity.TeamUsers.Select(t => t.Id);
+            res.TeamUsers = teamEntity.TeamUsers.Select(t => t.Id);
 
             return res;
         }

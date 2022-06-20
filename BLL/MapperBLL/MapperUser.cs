@@ -25,14 +25,11 @@ namespace BLL.MapperBLL
             res.Pseudo = userAPI.Pseudo;
             res.Email = userAPI.Email;
             res.PssWd = userAPI.PassWord;
-            foreach (var item in userAPI.Boards)
-            {
-                res.Boards.ToList().Add(MapperBoard.ToEntity(bs.GetOne(item))) /*userAPI.Boards*/;
-            }
-            foreach (var item in userAPI.Teams)
-            {
-                res.Teams.ToList().Add(MapperTeam.ToEntity(ts.GetOne(item)));
-            }
+            //res.Boards = new List<BoardEntity>();
+            //foreach (var item in userAPI.Boards)
+            //{
+            //    res.Boards.Add(MapperBoard.ToEntity(bs.GetOne(item))) /*userAPI.Boards*/;
+            //}
             //res.Boards = (IEnumerable<BoardEntity>)userAPI.Boards;
             //res.Teams = (IEnumerable<TeamEntity>)userAPI.Teams;
             return res;
@@ -49,11 +46,16 @@ namespace BLL.MapperBLL
             res.Pseudo = userEntity.Pseudo;
             res.Email = userEntity.Email;
             res.PassWord = userEntity.PssWd;
-            res.Boards = userEntity.Boards.Select(d => d.Id)/*.ToApi()*/;
+            //foireux
+            //res.Boards = userEntity.Boards.Select(d => d.Id)/*.ToApi()*/;
+            //res.Boards = userEntity.Boards.All(d=> d.UserOwner.Id == userEntity.Id?d.Id:0);
+            res.Boards = 
+            
             res.Teams = userEntity.Teams.Select(d => d.Id);
             //res.Boards = (IEnumerable<BoardBLL>)userEntity.Boards;
             //res.Teams = (IEnumerable<TeamBLL>)userEntity.Teams;
             return res;
+
         }
 
 
