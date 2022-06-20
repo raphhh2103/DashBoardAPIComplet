@@ -31,11 +31,12 @@ namespace BLL.Services
 
         public IEnumerator<UserBLL> GetAll()
         {
+
             UserRepository ur = new UserRepository();
-            IEnumerable<UserBLL> list = new List<UserBLL>();
+            ICollection<UserBLL> list = new List<UserBLL>();
             foreach (UserEntity user in ur.GetAll())
             {
-                list.ToList().Add(user.ToApi());
+                list.Add(user.ToApi());
             }
              //ur.GetAll();
 

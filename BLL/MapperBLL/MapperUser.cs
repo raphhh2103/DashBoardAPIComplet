@@ -49,7 +49,7 @@ namespace BLL.MapperBLL
             //foireux
             //res.Boards = userEntity.Boards.Select(d => d.Id)/*.ToApi()*/;
             //res.Boards = userEntity.Boards.All(d=> d.UserOwner.Id == userEntity.Id?d.Id:0);
-            res.Boards = 
+            res.Boards = userEntity.Boards.Select(b=>b.Id);
             
             res.Teams = userEntity.Teams.Select(d => d.Id);
             //res.Boards = (IEnumerable<BoardBLL>)userEntity.Boards;

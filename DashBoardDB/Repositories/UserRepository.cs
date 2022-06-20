@@ -62,7 +62,7 @@ namespace DashBoardDAL.Repositories
             List<UserEntity> r = new List<UserEntity>();
             using (DBConnect db = new DBConnect())
             {
-                r = db.User.AsQueryable().ToList();
+                r= db.User.AsQueryable().ToList();
             }
             return r;
         }
