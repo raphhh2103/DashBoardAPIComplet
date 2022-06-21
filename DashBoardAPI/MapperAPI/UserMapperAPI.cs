@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using DashBoardAPI.ModelsAPI;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DashBoardAPI.MapperAPI
 {
@@ -12,9 +13,10 @@ namespace DashBoardAPI.MapperAPI
                 Id = model.Id,
                 Pseudo = model.Pseudo,
                 PassWord = model.PassWord,
+                Salt = model.Salt,
                 Email = model.Email,
-                Boards = model.Boards,
-                Teams = model.Teams,
+                Boards = (ICollection<BoardAPI>)model.Boards,
+                Teams = (ICollection<TeamAPI>)model.Teams,
                 //foireux ! faire a la demande
                 //Teams = model.Teams.Select(t=>t.ToApi())
             };
@@ -28,9 +30,10 @@ namespace DashBoardAPI.MapperAPI
                 Id = model.Id,
                 Pseudo = model.Pseudo,
                 PassWord = model.PassWord,
+                Salt = model.Salt, 
                 Email = model.Email,
-                //Boards = model.Boards,
-                Teams = model.Teams,
+                Boards = (ICollection<BoardBLL>)model.Boards,
+                Teams = (ICollection<TeamBLL>)model.Teams,
                 //foireux ! faire a la demande
                 //Teams = model.Teams.Select(t=>t.ToApi())
             };

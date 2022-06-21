@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DashBoardDAL.Repositories
 {
-    public class BoardRepository : IRepository<BoardEntity>
+    public class BoardRepository /*: IRepository<BoardEntity>*/
     {
         public BoardEntity Create(string title, UserEntity user)
         {

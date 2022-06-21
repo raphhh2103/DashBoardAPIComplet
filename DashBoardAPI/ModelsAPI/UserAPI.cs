@@ -10,11 +10,12 @@ namespace DashBoardAPI.ModelsAPI
         public string Email { get; set; }
 
         public string PassWord { get; set; }
+        public string Salt { get; set; }
 
-        //public IEnumerable<BoardAPI> Boards { get; set; }
-        public IEnumerable<int>? Boards { get; set; }
+        public ICollection<BoardAPI> Boards { get; set; }
+        //public ICollection<int> Boards { get; set; }
 
-        //public IEnumerable<TeamAPI> Teams { get; set; }
-        public IEnumerable<int> Teams { get; set; }
+        public ICollection<TeamAPI> Teams { get; set; }
+        //public IEnumerable<int> Teams { get; set; }
     }
 }

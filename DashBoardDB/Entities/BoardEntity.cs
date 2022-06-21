@@ -16,6 +16,6 @@ namespace DashBoardDAL.Entities
         public int UserOwnerId { get; set; }
 
         //public int Contents { get; set; }
-        public IEnumerable<ContentEntity> Contents { get; set; }
+        public ICollection<ContentEntity> Contents { get; set; }
     }
 }

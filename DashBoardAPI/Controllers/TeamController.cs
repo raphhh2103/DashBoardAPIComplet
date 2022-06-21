@@ -25,7 +25,7 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneTeam(int id)
         {
-           TeamAPI  result =  tr.GetOne(id).ToAPI();
+           TeamAPI  result =  tr.GetOne(id).ToDal();
 
             return Ok(result);
         }

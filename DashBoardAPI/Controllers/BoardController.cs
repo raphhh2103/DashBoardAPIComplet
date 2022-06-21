@@ -21,11 +21,11 @@ namespace DashBoardAPI.Controllers
 
             return Ok();
         }
-        [HttpGet("{id}")]
-        public IActionResult GetOneBoard(int id)
-        {
-            return Ok(br.GetOne(id));
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult GetOneBoard(int id)
+        //{
+        //    return Ok(br.GetOne(id));
+        //}
         [HttpGet]
         public IActionResult GetAllBoard()
         {

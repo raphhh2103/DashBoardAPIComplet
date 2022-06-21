@@ -16,45 +16,52 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="userAPI"></param>
         /// <returns> UserEntity</returns>
-        public static UserEntity ToEntity(this UserBLL userAPI)
+        public static UserEntity ToDal(this UserBLL userBLL)
         {
-            UserEntity res = new UserEntity();
-            BoardService bs = new BoardService();
-            TeamService ts = new TeamService();
-            res.Id = userAPI.Id;
-            res.Pseudo = userAPI.Pseudo;
-            res.Email = userAPI.Email;
-            res.PssWd = userAPI.PassWord;
-            //res.Boards = new List<BoardEntity>();
+            UserEntity userEntity = new UserEntity();
+            userEntity.Id = userBLL.Id;
+            userEntity.Pseudo = userBLL.Pseudo;
+            userEntity.Email = userBLL.Email;
+            userEntity.PssWd = userBLL.PassWord;
+            userEntity.Salt = userBLL.Salt;
+            userEntity.Boards = (ICollection<BoardEntity>)userBLL.Boards;
+            userEntity.Teams = (ICollection<TeamEntity>)userBLL.Teams;
+            
+
             //foreach (var item in userAPI.Boards)
             //{
             //    res.Boards.Add(MapperBoard.ToEntity(bs.GetOne(item))) /*userAPI.Boards*/;
             //}
             //res.Boards = (IEnumerable<BoardEntity>)userAPI.Boards;
             //res.Teams = (IEnumerable<TeamEntity>)userAPI.Teams;
-            return res;
+            return userEntity;
         }
         /// <summary>
         /// converti un userEntity en UserApi
         /// </summary>
         /// <param name="userEntity"></param>
         /// <returns>UserApi</returns>
-        public static UserBLL ToApi(this UserEntity userEntity)
+        public static UserBLL ToBll(this UserEntity userEntity)
         {
-            UserBLL res = new UserBLL();
-            res.Id = userEntity.Id;
-            res.Pseudo = userEntity.Pseudo;
-            res.Email = userEntity.Email;
-            res.PassWord = userEntity.PssWd;
+            UserBLL userBLL = new UserBLL();
+            userBLL.Id = userEntity.Id;
+            userBLL.Pseudo = userEntity.Pseudo;
+            userBLL.Email = userEntity.Email;
+            userBLL.PassWord = userEntity.PssWd;
+            userBLL.Salt = userEntity.Salt;
+            userBLL.Teams = (ICollection<TeamBLL>)userEntity.Teams;
+            userBLL.Boards = (ICollection<BoardBLL>)userEntity.Boards;
+
             //foireux
             //res.Boards = userEntity.Boards.Select(d => d.Id)/*.ToApi()*/;
             //res.Boards = userEntity.Boards.All(d=> d.UserOwner.Id == userEntity.Id?d.Id:0);
-            res.Boards = userEntity.Boards.Select(b=>b.Id);
-            
-            res.Teams = userEntity.Teams.Select(d => d.Id);
+
+            //res.Boards = (ICollection<int>)userEntity.Boards.Select(b=>b.Id);
+
+            //res.Teams = userEntity.Teams.Select(d => d.Id);
             //res.Boards = (IEnumerable<BoardBLL>)userEntity.Boards;
             //res.Teams = (IEnumerable<TeamBLL>)userEntity.Teams;
-            return res;
+            return userBLL;
 
         }
 

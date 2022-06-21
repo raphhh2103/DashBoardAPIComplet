@@ -1,53 +1,62 @@
 ﻿using BLL.MapperBLL;
 using BLL.Models;
-using DashBoardDAL.Entities;
-using DashBoardDAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DashBoardDAL.Repositories;
+using DashBoardDAL.Entities;
 
 namespace BLL.Services
 {
     public class UserService
     {
+        private readonly UserRepository _userRepository;
+        public UserService(UserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
+        public IEnumerable<UserBLL> GetAll()
+        {
+            return _userRepository.GetAll().Select(u => u.ToBll());
+        }
 
         public UserBLL GetOne(int id)
         {
-            UserRepository ur = new UserRepository();
 
-            return ur.GetOne(id).ToApi();
+
+            return _userRepository.GetOne(id).ToBll();
         }
 
-        public bool Create(UserBLL user, byte[] salt)
+        // I love Dicks (Jean Timmermans) 
+
+        public UserEntity Create(UserBLL user, byte[] salt)
         {
-            UserRepository ur = new UserRepository();
-            UserEntity entity = user.ToEntity();
-            entity.Salt = Encoding.UTF8.GetString(salt);
-            return ur.Create(entity, user.Teams);
+            user.Salt = Convert.ToBase64String(salt);
+            return _userRepository.Create(user.ToDal());
         }
 
-        public IEnumerator<UserBLL> GetAll()
-        {
+        //public IEnumerator<UserBLL> GetAll()
+        //{
 
-            UserRepository ur = new UserRepository();
-            ICollection<UserBLL> list = new List<UserBLL>();
-            foreach (UserEntity user in ur.GetAll())
-            {
-                list.Add(user.ToApi());
-            }
-             //ur.GetAll();
+        //    UserRepository ur = new UserRepository();
+        //    ICollection<UserBLL> list = new List<UserBLL>();
+        //    foreach (UserEntity user in ur.GetAll())
+        //    {
+        //        list.Add(user.ToApi());
+        //    }
+        //     //ur.GetAll();
 
-            return (IEnumerator<UserBLL>)list;
+        //    return (IEnumerator<UserBLL>)list;
 
-        }
+        //}
 
-        public void Update(UserEntity user)
-        {
-            UserRepository ur =new UserRepository();
-            ur.Update(user);
-        }
+        //public void Update(UserEntity user)
+        //{
+        //    UserRepository ur =new UserRepository();
+        //    ur.Update(user);
+        //}
     }
 }

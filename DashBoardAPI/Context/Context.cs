@@ -29,7 +29,7 @@ namespace DashBoardAPI.Context
         public void CreateUser(UserEntity u)
         {
 
-                ur.Create(u, u.Teams.Select(t => t.Id).ToList());
+               // ur.Create(u,/* u.Teams.Select(t => t.Id).ToList()*/);
         }
        public void GetOneUser(int id)
         {

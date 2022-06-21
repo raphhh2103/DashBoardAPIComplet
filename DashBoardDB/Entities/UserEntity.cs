@@ -19,6 +19,7 @@ namespace DashBoardDAL.Entities
         public string Salt { get; set; }
 
         //public int Boards { get; set; }
+        //a changer putain de merde ! 
         public ICollection<BoardEntity> Boards { get; set; }
         //public int Teams { get; set; }
         public ICollection<TeamEntity> Teams { get; set; }

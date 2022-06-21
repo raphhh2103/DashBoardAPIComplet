@@ -12,11 +12,11 @@ namespace BLL.Services
 {
     public class BoardService
     {
-        public BoardBLL GetOne(int id)
-        {
-            BoardRepository br = new BoardRepository();
-            return br.GetOne(id).ToApi();
-        }
+        //public BoardBLL GetOne(int id)
+        //{
+        //    BoardRepository br = new BoardRepository();
+        //    return br.GetOne(id).ToApi();
+        //}
 
         public void Create(string title, UserEntity userOwner)
         {

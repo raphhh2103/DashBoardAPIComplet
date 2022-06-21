@@ -19,11 +19,11 @@ namespace DashBoardAPI.Controllers
 
             return Ok();
         }
-        [HttpGet("{id}")]
-        public IActionResult GetOneContent(int id)
-        {
-            return Ok(cr.GetOne(id));
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult GetOneContent(int id)
+        //{
+        //    return Ok(cr.GetOne(id));
+        //}
         [HttpGet]
         public IActionResult GetAllContent()
         {

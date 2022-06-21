@@ -6,7 +6,7 @@ namespace DashBoardAPI.MapperAPI
 {
     public static class TeamMapperAPI
     {
-        public static TeamAPI ToAPI(this  TeamBLL modelBll)
+        public static TeamAPI ToDal(this  TeamBLL modelBll)
         {
             return new TeamAPI()
             {

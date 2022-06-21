@@ -12,11 +12,13 @@ namespace BLL.Models
         public string Email { get; set; }
 
         public string PassWord { get; set; }
+        //public byte[] Salt { get; set; }
+        public string Salt { get; set; }
 
         //public int Boards { get; set; }
-        public IEnumerable<int> Boards { get; set; }
+        public ICollection<BoardBLL> Boards { get; set; }
 
-        public IEnumerable<int> Teams { get; set; }
+        public ICollection<TeamBLL> Teams { get; set; }
         // recuperer uniquement l'ID 
         //public IEnumerable<TeamBLL> Teams { get; set; }
     }

@@ -15,29 +15,29 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="boardAPI"></param>
         /// <returns>boardEntity</returns>
-        public static BoardEntity ToEntity( this BoardBLL boardAPI)
-        {
-            BoardEntity res = new BoardEntity();
+        //public static BoardEntity ToEntity( this BoardBLL boardAPI)
+        //{
+        //    BoardEntity res = new BoardEntity();
 
-            res.Id = boardAPI.Id;
-            res.Title = boardAPI.Title;
-            res.UserOwner = MapperUser.ToEntity(boardAPI.UserOwner);
-            res.Contents = (IEnumerable<ContentEntity>)boardAPI.Contents;
-            return res;
-        }
+        //    res.Id = boardAPI.Id;
+        //    res.Title = boardAPI.Title;
+        //    res.UserOwner = MapperUser.ToEntity(boardAPI.UserOwner);
+        //    res.Contents = (ICollection<ContentEntity>)boardAPI.Contents;
+        //    return res;
+        //}
         /// <summary>
         /// converti un board Entity en BoardAPi
         /// </summary>
         /// <param name="boardEntity"></param>
         /// <returns>Board API</returns>
-        public static BoardBLL ToApi( this BoardEntity boardEntity)
-        {
-            BoardBLL res = new BoardBLL();
-            res.Id = boardEntity.Id;
-            res.Title = boardEntity.Title;
-            res.UserOwner = MapperUser.ToApi(boardEntity.UserOwner);
-            res.Contents = (IEnumerable<int>)boardEntity.Contents;
-            return res;
-        }
+        //public static BoardBLL ToApi( this BoardEntity boardEntity)
+        //{
+        //    BoardBLL res = new BoardBLL();
+        //    res.Id = boardEntity.Id;
+        //    res.Title = boardEntity.Title;
+        //    res.UserOwner = MapperUser.ToApi(boardEntity.UserOwner);
+        //    res.Contents = (IEnumerable<int>)boardEntity.Contents;
+        //    return res;
+        //}
     }
 }

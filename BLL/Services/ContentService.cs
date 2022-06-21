@@ -13,11 +13,11 @@ namespace BLL.Services
     public class ContentService
     {
 
-        public ContentBLL GetOne(int id)
-        {
-            ContentRepository cr = new ContentRepository();
-            return cr.GetOne(id).ToApi();
-        }
+        //public ContentBLL GetOne(int id)
+        //{
+        //    ContentRepository cr = new ContentRepository();
+        //    return cr.GetOne(id).ToApi();
+        //}
 
         public void Create(BoardEntity be, string text)
         {

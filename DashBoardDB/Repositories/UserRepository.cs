@@ -16,23 +16,23 @@ namespace DashBoardDAL.Repositories
         /// <param name="pseudo"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public bool Create(UserEntity entity, IEnumerable<int> teamIds)
+        public UserEntity Create(UserEntity entity/*, IEnumerable<TeamEntity> teams*/)
         {
 
-           //  TeamRepository tr = new TeamRepository() ;
-           //TeamEntity tm =  tr.Create("default");
-           // tm.TeamUsers = new List<UserEntity>() { r };
-           // tr.Update(tm);
-           // r.Teams.ToList<TeamEntity>().Add(tm);
+            //  TeamRepository tr = new TeamRepository() ;
+            //TeamEntity tm =  tr.Create("default");
+            // tm.TeamUsers = new List<UserEntity>() { r };
+            // tr.Update(tm);
+            // r.Teams.ToList<TeamEntity>().Add(tm);
             using (DBConnect db = new DBConnect())
             {
-                entity.Teams = teamIds.Select(id => db.team.First(t => t.Id == id)).ToList();
+                //entity.Teams = teams.Select(id => db.team.First(t => t.Id == id)).ToList();
                 db.User.Add(entity);
                 db.SaveChanges();
             }
             BoardRepository br = new BoardRepository();
-            BoardEntity be =  br.Create("default", entity);
-            return true;
+            BoardEntity be = br.Create("default", entity);
+            return entity;
 
         }
         /// <summary>
@@ -59,12 +59,13 @@ namespace DashBoardDAL.Repositories
         /// <returns></returns>
         public IEnumerable<UserEntity> GetAll()
         {
-            List<UserEntity> r = new List<UserEntity>();
+            List<UserEntity> user = new List<UserEntity>();
             using (DBConnect db = new DBConnect())
             {
-                r= db.User.AsQueryable().ToList();
+                //userList= db.User.AsQueryable().ToList();
+                user = db.User.ToList();
             }
-            return r;
+            return user;
         }
         /// <summary>
         /// recupere un user selon un Id entrée en parametre 
@@ -73,12 +74,24 @@ namespace DashBoardDAL.Repositories
         /// <returns></returns>
         public UserEntity GetOne(int id)
         {
-            UserEntity t = new UserEntity();
+            UserEntity user = new UserEntity();
+            //BoardRepository br = new BoardRepository();
             using (DBConnect db = new DBConnect())
             {
-                t = db.User.Where(a => a.Id == id).FirstOrDefault();
-                return t;
+
+                user = db.User.Find(id);
+                //t.Boards = (ICollection<BoardEntity>)db.Board.Find(t.Id);
+
+                // t = db.User.Where(a => a.Id == id).FirstOrDefault();
+                ///* t.Boards =*/
+                // var test = db.Board.Select(r=>r.UserOwnerId).ToList()/*.where( q=>q.Id ==   )*/;
+
             }
+            //if (t.Boards is not null)
+            //{
+                return user;
+            //}
+            //return null;
         }
         /// <summary>
         /// recherche les différencces entre le user envoyer en parametre  et le user en db avec le meme ID
@@ -93,10 +106,10 @@ namespace DashBoardDAL.Repositories
 
                 db.User.Update(entity);
 
-                    return true;
+                return true;
                 //}
             }
-            
+
         }
     }
 }
