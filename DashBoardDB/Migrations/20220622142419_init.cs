@@ -2,7 +2,7 @@
 
 namespace DashBoardDAL.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -103,15 +103,17 @@ namespace DashBoardDAL.Migrations
                 name: "ContentEntity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    BoardId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Content", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ContentEntity_BoardEntity_Id",
-                        column: x => x.Id,
+                        name: "FK_ContentEntity_BoardEntity_BoardId",
+                        column: x => x.BoardId,
                         principalTable: "BoardEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -126,6 +128,11 @@ namespace DashBoardDAL.Migrations
                 name: "IX_BoardEntity_UserOwnerId",
                 table: "BoardEntity",
                 column: "UserOwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContentEntity_BoardId",
+                table: "ContentEntity",
+                column: "BoardId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamEntityUserEntity_TeamsId",
