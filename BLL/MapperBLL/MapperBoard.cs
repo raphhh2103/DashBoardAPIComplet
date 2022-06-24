@@ -35,7 +35,7 @@ namespace BLL.MapperBLL
             BoardBLL res = new BoardBLL();
             res.Id = boardEntity.Id;
             res.Title = boardEntity.Title;
-            res.UserOwner = MapperUser.ToApi(boardEntity.UserOwner);
+            res.UserOwner = MapperUser.ToBLL(boardEntity.UserOwner);
             res.Contents = (IEnumerable<int>)boardEntity.Contents;
             return res;
         }

@@ -32,20 +32,19 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="projectAPI"></param>
         /// <returns>project entity</returns>
-        public static ProjectEntity ToEntity ( this ProjectBLL projectAPI)
-        {
-            ProjectEntity res = new ProjectEntity();
-            res.Id = projectAPI.Id;
-            res.NameProject = projectAPI.NameProject;
-            UserService US = new UserService();
-            //res.TeamsUsers = projectAPI.TeamUsers;
-            foreach (var item in projectAPI.TeamUsers)
-            {
-                res.TeamsUsers.ToList().Add(MapperUser.ToEntity(US.GetOne(item)));
-            }
-            //res.TeamsUsers = (IEnumerable<UserEntity>)projectAPI.TeamUsers;
-            return res;
-        }
+        //public static ProjectEntity ToEntity ( this ProjectBLL projectAPI)
+        //{
+        //    ProjectEntity res = new ProjectEntity();
+        //    res.Id = projectAPI.Id;
+        //    res.NameProject = projectAPI.NameProject;
+        //    //res.TeamsUsers = projectAPI.TeamUsers;
+        //    foreach (var item in projectAPI.TeamUsers)
+        //    {
+        //        res.TeamsUsers.ToList().Add(MapperUser.ToEntity(US.GetOne(item)));
+        //    }
+        //    //res.TeamsUsers = (IEnumerable<UserEntity>)projectAPI.TeamUsers;
+        //    return res;
+        //}
 
 
     }

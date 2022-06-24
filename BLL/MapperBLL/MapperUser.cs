@@ -14,17 +14,17 @@ namespace BLL.MapperBLL
         /// <summary>
         /// converti un userAPI en UserEntity 
         /// </summary>
-        /// <param name="userAPI"></param>
+        /// <param name="userBLL"></param>
         /// <returns> UserEntity</returns>
-        public static UserEntity ToEntity(this UserBLL userAPI)
+        public static UserEntity ToEntity(this UserBLL userBLL)
         {
             UserEntity res = new UserEntity();
             BoardService bs = new BoardService();
             TeamService ts = new TeamService();
-            res.Id = userAPI.Id;
-            res.Pseudo = userAPI.Pseudo;
-            res.Email = userAPI.Email;
-            res.PssWd = userAPI.PassWord;
+            res.Id = userBLL.Id;
+            res.Pseudo = userBLL.Pseudo;
+            res.Email = userBLL.Email;
+            res.PssWd = userBLL.PassWord;
             //res.Boards = new List<BoardEntity>();
             //foreach (var item in userAPI.Boards)
             //{
@@ -39,7 +39,7 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="userEntity"></param>
         /// <returns>UserApi</returns>
-        public static UserBLL ToApi(this UserEntity userEntity)
+        public static UserBLL ToBLL(this UserEntity userEntity)
         {
             UserBLL res = new UserBLL();
             res.Id = userEntity.Id;
@@ -49,9 +49,9 @@ namespace BLL.MapperBLL
             //foireux
             //res.Boards = userEntity.Boards.Select(d => d.Id)/*.ToApi()*/;
             //res.Boards = userEntity.Boards.All(d=> d.UserOwner.Id == userEntity.Id?d.Id:0);
-            res.Boards = userEntity.Boards.Select(b=>b.Id);
+            //res.Boards = userEntity.Boards.Select(b=>b.Id);
             
-            res.Teams = userEntity.Teams.Select(d => d.Id);
+          //  res.Teams = userEntity.Teams.Select(d => d.Id);
             //res.Boards = (IEnumerable<BoardBLL>)userEntity.Boards;
             //res.Teams = (IEnumerable<TeamBLL>)userEntity.Teams;
             return res;

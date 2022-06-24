@@ -19,11 +19,11 @@ namespace DashBoardDAL.Repositories
         public bool Create(UserEntity entity, IEnumerable<int> teamIds)
         {
 
-           //  TeamRepository tr = new TeamRepository() ;
-           //TeamEntity tm =  tr.Create("default");
-           // tm.TeamUsers = new List<UserEntity>() { r };
-           // tr.Update(tm);
-           // r.Teams.ToList<TeamEntity>().Add(tm);
+            //  TeamRepository tr = new TeamRepository() ;
+            //TeamEntity tm =  tr.Create("default");
+            // tm.TeamUsers = new List<UserEntity>() { r };
+            // tr.Update(tm);
+            // r.Teams.ToList<TeamEntity>().Add(tm);
             using (DBConnect db = new DBConnect())
             {
                 entity.Teams = teamIds.Select(id => db.team.First(t => t.Id == id)).ToList();
@@ -31,7 +31,7 @@ namespace DashBoardDAL.Repositories
                 db.SaveChanges();
             }
             BoardRepository br = new BoardRepository();
-            BoardEntity be =  br.Create("default", entity);
+            BoardEntity be = br.Create("default", entity);
             return true;
 
         }
@@ -60,9 +60,23 @@ namespace DashBoardDAL.Repositories
         public IEnumerable<UserEntity> GetAll()
         {
             List<UserEntity> r = new List<UserEntity>();
+            //List<TeamEntity> team = new List<TeamEntity>();
+            //TeamRepository tr = new TeamRepository();
+
             using (DBConnect db = new DBConnect())
             {
-                r= db.User.AsQueryable().ToList();
+                r = db.User.AsQueryable().ToList();
+                //team = db.team.AsQueryable().ToList();
+                //for (int i = 0; i < r.Count; i++)
+                //{
+                //    foreach (var item in team[i].TeamUsers)
+                //    {
+                //        if (r[i].Id == item.Id)
+                //        {
+                //            r[i].Teams = team;
+                //        }
+                //    }
+                //}
             }
             return r;
         }
@@ -90,13 +104,12 @@ namespace DashBoardDAL.Repositories
         {
             using (DBConnect db = new DBConnect())
             {
-
                 db.User.Update(entity);
 
-                    return true;
+                return true;
                 //}
             }
-            
+
         }
     }
 }

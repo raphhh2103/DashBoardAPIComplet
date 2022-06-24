@@ -12,42 +12,37 @@ namespace BLL.Services
 {
     public class UserService
     {
+        private readonly UserRepository _userService;
 
+        public UserService(UserRepository userRepository)
+        {
+            this._userService = userRepository;
+        }
 
         public UserBLL GetOne(int id)
         {
-            UserRepository ur = new UserRepository();
+    
 
-            return ur.GetOne(id).ToApi();
+            return _userService.GetOne(id).ToBLL();
         }
 
         public bool Create(UserBLL user, byte[] salt)
         {
-            UserRepository ur = new UserRepository();
+            
             UserEntity entity = user.ToEntity();
             entity.Salt = Encoding.UTF8.GetString(salt);
-            return ur.Create(entity, user.Teams);
+            return _userService.Create(entity, user.Teams);
         }
 
-        public IEnumerator<UserBLL> GetAll()
+        public IEnumerable<UserBLL> GetAll()
         {
-
-            UserRepository ur = new UserRepository();
-            ICollection<UserBLL> list = new List<UserBLL>();
-            foreach (UserEntity user in ur.GetAll())
-            {
-                list.Add(user.ToApi());
-            }
-             //ur.GetAll();
-
-            return (IEnumerator<UserBLL>)list;
+            return _userService.GetAll().Select(u=> u.ToBLL());
 
         }
 
         public void Update(UserEntity user)
         {
-            UserRepository ur =new UserRepository();
-            ur.Update(user);
+            _userService.Update(user);
         }
     }
 }

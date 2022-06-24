@@ -35,7 +35,16 @@ namespace DashBoardAPI.MapperAPI
                 //Teams = model.Teams.Select(t=>t.ToApi())
             };
 
-        }
 
+           
+
+        }
+        //public static object ToView(this UserAPI model)
+        //{
+        //    return new object()
+        //    {
+
+        //    };
+        //}
     }
 }

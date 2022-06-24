@@ -8,6 +8,8 @@ using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DashBoardAPI.Controllers
 {
@@ -15,8 +17,14 @@ namespace DashBoardAPI.Controllers
     [Route("User")]
     public class UserController : ControllerBase
     {
+        private readonly UserService _userService;
+
+        public UserController( UserService userService)
+        {
+            _userService = userService;
+        }
             //Context.Context c = new Context.Context();
-        UserService ur = new UserService();
+        //UserService ur = new UserService();
 
         [HttpPost]
         public IActionResult UserCreate(UserAPI user)
@@ -25,8 +33,8 @@ namespace DashBoardAPI.Controllers
             UserBLL u = user.ToBll();
 
             u.PassWord = Crypto.AshPassword(s, user.PassWord);
-            
-            ur.Create(u, s);
+
+            _userService.Create(u, s);
 
             return Ok();
         }
@@ -34,19 +42,22 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneUser(int id)
         {
-            return Ok(ur.GetOne(id));
+            return Ok(_userService.GetOne(id));
         }
         [HttpGet]
         public IActionResult GetAllUser()
         {
-            return Ok(ur.GetAll());
+            
+            IEnumerable<UserAPI> userAllData = _userService.GetAll().Select(u=>u.ToApi());
+            IEnumerable<object> userEssentialData = userAllData.Select(u => new {u.Id ,u.Email,u.Pseudo,});
+            return Ok(userEssentialData);
         }
 
         [HttpPut("{user}")]
         public IActionResult UpdateUser(UserEntity user)
         {
-            
-            ur.Update(user);
+
+            _userService.Update(user);
 
             //foireux ! 
             return Ok();

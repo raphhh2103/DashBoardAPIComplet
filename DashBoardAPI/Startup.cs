@@ -1,6 +1,8 @@
 using DashBoardAPI.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using UserRepository = DashBoardDAL.Repositories.UserRepository;
+using UserService = BLL.Services.UserService; 
 
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +31,8 @@ namespace DashBoardAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IContext>(m => new Context.Context());
-
+            services.AddTransient(typeof(UserRepository));
+            services.AddTransient(typeof(UserService));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
