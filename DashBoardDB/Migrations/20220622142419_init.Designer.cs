@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DashBoardDAL.Migrations
 {
     [DbContext(typeof(DBConnect))]
-    [Migration("20220620130437_Init")]
-    partial class Init
+    [Migration("20220622142419_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,11 @@ namespace DashBoardDAL.Migrations
             modelBuilder.Entity("DashBoardDAL.Entities.ContentEntity", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BoardId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -55,6 +60,8 @@ namespace DashBoardDAL.Migrations
 
                     b.HasKey("Id")
                         .HasName("PK_Content");
+
+                    b.HasIndex("BoardId");
 
                     b.ToTable("ContentEntity");
                 });
@@ -166,7 +173,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.BoardEntity", "TitleBoard")
                         .WithMany("Contents")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

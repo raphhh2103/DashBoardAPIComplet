@@ -45,6 +45,11 @@ namespace DashBoardDAL.Migrations
             modelBuilder.Entity("DashBoardDAL.Entities.ContentEntity", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BoardId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -53,6 +58,8 @@ namespace DashBoardDAL.Migrations
 
                     b.HasKey("Id")
                         .HasName("PK_Content");
+
+                    b.HasIndex("BoardId");
 
                     b.ToTable("ContentEntity");
                 });
@@ -164,7 +171,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.BoardEntity", "TitleBoard")
                         .WithMany("Contents")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("BoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

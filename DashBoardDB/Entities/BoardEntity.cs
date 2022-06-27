@@ -16,6 +16,12 @@ namespace DashBoardDAL.Entities
         public int UserOwnerId { get; set; }
 
         //public int Contents { get; set; }
+<<<<<<< HEAD
         public ICollection<ContentEntity> Contents { get; set; }
+=======
+        public IEnumerable<ContentEntity> Contents { get; set; }
+
+
+>>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
     }
 }

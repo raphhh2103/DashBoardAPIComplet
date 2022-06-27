@@ -30,6 +30,7 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="boardEntity"></param>
         /// <returns>Board API</returns>
+<<<<<<< HEAD
         //public static BoardBLL ToApi( this BoardEntity boardEntity)
         //{
         //    BoardBLL res = new BoardBLL();
@@ -39,5 +40,16 @@ namespace BLL.MapperBLL
         //    res.Contents = (IEnumerable<int>)boardEntity.Contents;
         //    return res;
         //}
+=======
+        public static BoardBLL ToApi( this BoardEntity boardEntity)
+        {
+            BoardBLL res = new BoardBLL();
+            res.Id = boardEntity.Id;
+            res.Title = boardEntity.Title;
+            res.UserOwner = MapperUser.ToBLL(boardEntity.UserOwner);
+            res.Contents = (IEnumerable<int>)boardEntity.Contents;
+            return res;
+        }
+>>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
     }
 }

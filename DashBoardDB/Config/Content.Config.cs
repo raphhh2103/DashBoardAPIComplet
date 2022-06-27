@@ -20,7 +20,8 @@ namespace DashBoardDAL.Config
             builder.Property(x => x.Text).HasMaxLength(500);
 
 
-            builder.HasOne<BoardEntity>(g => g.TitleBoard).WithMany(w=>w.Contents).HasForeignKey(x => x.Id);
+            builder.HasOne<BoardEntity>(g => g.TitleBoard).WithMany(w=>w.Contents).HasForeignKey(x => x.BoardId);
+
 
 
         }

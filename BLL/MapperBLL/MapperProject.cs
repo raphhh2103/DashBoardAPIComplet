@@ -37,7 +37,10 @@ namespace BLL.MapperBLL
         //    ProjectEntity res = new ProjectEntity();
         //    res.Id = projectAPI.Id;
         //    res.NameProject = projectAPI.NameProject;
+<<<<<<< HEAD
         //    UserService US = new UserService();
+=======
+>>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
         //    //res.TeamsUsers = projectAPI.TeamUsers;
         //    foreach (var item in projectAPI.TeamUsers)
         //    {
