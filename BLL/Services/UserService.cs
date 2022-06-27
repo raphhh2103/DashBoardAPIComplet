@@ -33,14 +33,14 @@ namespace BLL.Services
             
             UserEntity entity = user.ToEntity();
             entity.Salt = Encoding.UTF8.GetString(salt);
-            return _userService.Create(entity, user.Teams);
+            return _userService.Create(entity/*, user.Teams*/);
         }
 
         public IEnumerable<UserBLL> GetAll()
         {
             return _userService.GetAll().Select(u=> u.ToBLL());
 
-        //}
+        }
 
         public void Update(UserEntity user)
         {

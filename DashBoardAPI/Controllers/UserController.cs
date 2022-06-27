@@ -23,8 +23,7 @@ namespace DashBoardAPI.Controllers
         {
             _userService = userService;
         }
-            //Context.Context c = new Context.Context();
-        //UserService ur = new UserService();
+ 
 
         [HttpPost]
         public IActionResult UserCreate(UserAPI user)
@@ -32,9 +31,9 @@ namespace DashBoardAPI.Controllers
             byte[] salt = Crypto.GenerateSalt();
             UserBLL u = user.ToBll();
 
-            u.PassWord = Crypto.AshPassword(s, user.PassWord);
+            u.PassWord = Crypto.AshPassword(salt, user.PassWord);
 
-            _userService.Create(u, s);
+            _userService.Create(u, salt);
 
             return Ok();
         }
@@ -59,9 +58,9 @@ namespace DashBoardAPI.Controllers
 
             _userService.Update(user);
 
-        //    //foireux ! 
-        //    return Ok();
-        //} 
+            //    //foireux ! 
+            return Ok();
+        }
 
     }
 }

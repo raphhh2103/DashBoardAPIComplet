@@ -14,7 +14,16 @@ namespace DashBoardAPI.MapperAPI
                 TitleBoard = model.TitleBoard.ToApi(),
             };
         }
-
+        public static ContentBLL ToBll(this ContentAPI model)
+        {
+            return new ContentBLL()
+            {
+                Id = model.Id,
+                Text = model.Text/*,
+                TitleBoard = model.TitleBoard,*/
+            };
+        }
+        
 
     }
 }

@@ -21,7 +21,7 @@ namespace BLL.MapperBLL
             //MapperBoard MB = new MapperBoard();
             res.Id = contentEntity.Id;
             res.Text = contentEntity.Text;
-            res.TitleBoard = MapperBoard.ToApi(contentEntity.TitleBoard);
+            //res.TitleBoard = ToApi(contentEntity.TitleBoard);
             return res;
         }
         /// <summary>

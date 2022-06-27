@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DashBoardDAL.Repositories
 {
     public class ContentRepository /*: IRepository<ContentEntity>*/
@@ -15,10 +16,10 @@ namespace DashBoardDAL.Repositories
         /// <param name="title"></param>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public bool Create(BoardEntity title,string txt)
+        public ContentEntity Create(ContentEntity title,string txt)
         {
             ContentEntity c = new ContentEntity();
-            c.TitleBoard = title;
+            c.TitleBoard = title.TitleBoard;
             c.Text = txt;
             
             using(DBConnect db =  new DBConnect())
@@ -26,7 +27,7 @@ namespace DashBoardDAL.Repositories
                 db.Content.Add(c);
                 db.SaveChanges();
             }
-                return true;
+                return c;
         }
   
         public bool Delete(int id)

@@ -40,7 +40,7 @@ namespace BLL.MapperBLL
             //res.TeamsUsers = projectAPI.TeamUsers;
             foreach (var item in projectAPI.TeamUsers)
             {
-                res.TeamsUsers.ToList().Add(MapperUser.ToEntity(US.GetOne(item)));
+               // res.TeamsUsers.ToList().Add(MapperUser.ToEntity(/*.GetOne(item)*/));
             }
             //res.TeamsUsers = (IEnumerable<UserEntity>)projectAPI.TeamUsers;
             return res;

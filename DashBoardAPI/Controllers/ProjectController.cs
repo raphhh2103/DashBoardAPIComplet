@@ -8,12 +8,16 @@ namespace DashBoardAPI.Controllers
     public class ProjectController : ControllerBase
     {
 
-        ProjectService pr = new ProjectService(); 
+        private readonly ProjectService _projectService;
+        public ProjectController(ProjectService projectService)
+        {
+            this._projectService = projectService;
+        }
 
         [HttpPost]
         public IActionResult CreateProject(ProjectEntity pe)
         {
-            pr.Create(pe.NameProject);
+            _projectService.Create(pe.NameProject);
 
             return Ok();
         }
@@ -21,19 +25,19 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneProject(int id)
         {
-            pr.GetOne(id);
+            _projectService.GetOne(id);
             return Ok();
         }
 
         [HttpGet]
         public IActionResult GetAllProject()
         {
-            return Ok(pr.GetAll());
+            return Ok(_projectService.GetAll());
         }
         [HttpPut("{project}")]
         public IActionResult UpdateProject(ProjectEntity project)
         {
-            pr.Update(project);
+            _projectService.Update(project);
 
             return Ok();
         }

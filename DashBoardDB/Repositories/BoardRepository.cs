@@ -52,6 +52,7 @@ namespace DashBoardDAL.Repositories
 
         public BoardEntity GetOne(int id)
         {
+
             BoardEntity b = new BoardEntity();
             using(DBConnect db = new DBConnect())
             {

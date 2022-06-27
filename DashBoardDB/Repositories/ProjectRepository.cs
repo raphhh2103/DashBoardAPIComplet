@@ -9,7 +9,7 @@ namespace DashBoardDAL.Repositories
 {
     public class ProjectRepository /*: IRepository<ProjectEntity>*/
     {
-        public bool Create(string nameProject)
+        public ProjectEntity Create(string nameProject)
         {
             ProjectEntity p = new ProjectEntity();
 
@@ -19,7 +19,7 @@ namespace DashBoardDAL.Repositories
             {
                 db.Project.Add(p);
                 db.SaveChanges();
-                return true;
+                return p;
             }
         }
 

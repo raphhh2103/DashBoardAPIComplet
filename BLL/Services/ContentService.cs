@@ -12,16 +12,16 @@ namespace BLL.Services
 {
     public class ContentService
     {
-
-        //public ContentBLL GetOne(int id)
-        //{
-        //    ContentRepository cr = new ContentRepository();
-        //    return cr.GetOne(id).ToApi();
-        //}
-
-        public void Create(BoardEntity be, string text)
+        private readonly ContentRepository _contentRepository;
+        public ContentService(ContentRepository contentRepository)
         {
-            throw new NotImplementedException();
+            this._contentRepository = contentRepository;
+        }
+
+
+        public ContentEntity Create(ContentBLL be, string text)
+        {
+           return _contentRepository.Create(be.ToEntity(), text);
         }
 
         public object GetAll()
@@ -32,6 +32,11 @@ namespace BLL.Services
         public void Update(ContentEntity content)
         {
             throw new NotImplementedException();
+        }
+
+        public ContentBLL GetOne(int id)
+        {
+           return _contentRepository.GetOne(id).ToApi();
         }
     }
 }

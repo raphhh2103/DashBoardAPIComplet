@@ -12,25 +12,34 @@ namespace BLL.Services
 {
     public class ProjectService
     {
+        private readonly ProjectRepository _projectRepository;
+        public ProjectService(ProjectRepository projectRepository)
+        {
+            this._projectRepository = projectRepository;
+        }
+
+
+
         public ProjectBLL GetOne(int Id)
         {
-            ProjectRepository pr = new ProjectRepository();
-            return pr.GetOne(Id).ToApi();
+            return _projectRepository.GetOne(Id).ToApi();
         }
 
-        public void Create(string nameProject)
+        public ProjectBLL Create(string nameProject)
         {
-            throw new NotImplementedException();
+            return _projectRepository.Create(nameProject).ToApi();
         }
 
-        public object GetAll()
+        public IEnumerable<ProjectBLL> GetAll()
         {
-            throw new NotImplementedException();
+            return _projectRepository.GetAll().Select(p => p.ToApi());
+
         }
 
         public void Update(ProjectEntity project)
         {
-            throw new NotImplementedException();
+
+            _projectRepository.Update(project);
         }
     }
 }

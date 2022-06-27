@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
+using DashBoardAPI.MapperAPI;
+using DashBoardAPI.ModelsAPI;
 using DashBoardDAL.Entities;
-using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DashBoardAPI.Controllers
@@ -9,30 +10,36 @@ namespace DashBoardAPI.Controllers
     [Route("Content")]
     public class ContentController : ControllerBase
     {
-        ContentService cr = new ContentService();
+        private readonly ContentService _contentService;
+
+        public ContentController(ContentService contentService)
+        {
+            this._contentService = contentService;
+        }
 
         [HttpPost]
-        public IActionResult ContentCreate( BoardEntity be)
+        public IActionResult ContentCreate( ContentAPI contentAPI)
         {
-            ContentEntity ce = new ContentEntity();
-            cr.Create(be, ce.Text);
+           
+    
+            _contentService.Create(contentAPI.ToBll(), "default");
 
             return Ok();
         }
-        //[HttpGet("{id}")]
-        //public IActionResult GetOneContent(int id)
-        //{
-        //    return Ok(cr.GetOne(id));
-        //}
+        [HttpGet("{id}")]
+        public IActionResult GetOneContent(int id)
+        {
+            return Ok(_contentService.GetOne(id));
+        }
         [HttpGet]
         public IActionResult GetAllContent()
         {
-            return Ok(cr.GetAll());
+            return Ok(_contentService.GetAll());
         }
         [HttpPut("{Content}")]
         public IActionResult UpdateContent(ContentEntity content)
         {
-            cr.Update(content);
+            _contentService.Update(content);
 
             return Ok();
         }

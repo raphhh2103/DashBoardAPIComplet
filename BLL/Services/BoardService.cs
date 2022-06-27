@@ -12,20 +12,20 @@ namespace BLL.Services
 {
     public class BoardService
     {
-        //public BoardBLL GetOne(int id)
-        //{
-        //    BoardRepository br = new BoardRepository();
-        //    return br.GetOne(id).ToApi();
-        //}
+        public BoardBLL GetOne(int id)
+        {
+            BoardRepository br = new BoardRepository();
+            return br.GetOne(id).ToBll();
+        }
 
-        public void Create(string title, UserEntity userOwner)
+        public void Create(string title, UserBLL userOwner)
         {
             throw new NotImplementedException();
         }
 
         public object GetAll()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void Update(BoardEntity board)

@@ -30,9 +30,10 @@ namespace DashBoardDAL.Repositories
                 db.User.Add(entity);
                 db.SaveChanges();
             }
+
             BoardRepository br = new BoardRepository();
             BoardEntity be = br.Create("default", entity);
-            return true;
+            return entity;
 
         }
         /// <summary>
@@ -66,19 +67,9 @@ namespace DashBoardDAL.Repositories
             using (DBConnect db = new DBConnect())
             {
                 r = db.User.AsQueryable().ToList();
-                //team = db.team.AsQueryable().ToList();
-                //for (int i = 0; i < r.Count; i++)
-                //{
-                //    foreach (var item in team[i].TeamUsers)
-                //    {
-                //        if (r[i].Id == item.Id)
-                //        {
-                //            r[i].Teams = team;
-                //        }
-                //    }
-                //}
+   
             }
-            return user;
+            return r;
         }
         /// <summary>
         /// recupere un user selon un Id entrée en parametre 

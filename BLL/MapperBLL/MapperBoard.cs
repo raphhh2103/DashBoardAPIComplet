@@ -32,7 +32,7 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name = "boardEntity" ></ param >
         /// < returns > Board API</returns>
-        public static BoardBLL ToApi( this BoardEntity boardEntity)
+        public static BoardBLL ToBll( this BoardEntity boardEntity)
         {
             BoardBLL res = new BoardBLL();
             res.Id = boardEntity.Id;

@@ -12,26 +12,30 @@ namespace BLL.Services
 {
     public class TeamService
     {
+        public readonly TeamRepository _teamRepository;
+        public TeamService(TeamRepository teamRepository)
+        {
+            this._teamRepository = teamRepository;
+        }
+
         public TeamBLL GetOne(int id)
         {
-            TeamRepository  tr = new TeamRepository();
-            return  tr.GetOne(id).ToApi();
+            return _teamRepository.GetOne(id).ToApi();
         }
 
         public TeamBLL Create(string name)
         { 
-            TeamRepository tr = new TeamRepository();
-            return tr.Create(name).ToApi();
+            return _teamRepository.Create(name).ToApi();
         }
 
-        public object GetAll()
+        public IEnumerable<TeamBLL> GetAll()
         {
-            throw new NotImplementedException();
+            return _teamRepository.GetAll().Select(t=>t.ToApi());
         }
 
         public void Update(TeamBLL team)
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

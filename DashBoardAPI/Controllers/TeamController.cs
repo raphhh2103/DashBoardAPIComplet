@@ -11,13 +11,19 @@ namespace DashBoardAPI.Controllers
     [Route("Team")]
     public class TeamController : ControllerBase
     {
-        TeamService tr = new TeamService();
+        private readonly TeamService _teamServce;
+
+        public TeamController(TeamService teamService)
+        {
+            this._teamServce = teamService;
+        }
+
         //TeamRepository tr = new TeamRepository();
 
         [HttpPost]
         public IActionResult CreateTeam(TeamAPI team)
         {
-            tr.Create(team.Name);
+            _teamServce.Create(team.Name);
 
 
             return Ok();
@@ -25,19 +31,19 @@ namespace DashBoardAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOneTeam(int id)
         {
-           TeamAPI  result =  tr.GetOne(id).ToDal();
+           TeamAPI  result = _teamServce.GetOne(id).ToDal();
 
             return Ok(result);
         }
         [HttpGet]
         public IActionResult GetAllTeam()
         {
-            return Ok(tr.GetAll());
+            return Ok(_teamServce.GetAll());
         }
         [HttpPut("{team}")]
         public IActionResult UpdateTeam(TeamAPI team)
         {
-            tr.Update(team.ToBll());
+            _teamServce.Update(team.ToBll());
 
             return Ok();
         }
