@@ -5,6 +5,12 @@ using UserRepository = DashBoardDAL.Repositories.UserRepository;
 using UserService = BLL.Services.UserService;
 using TeamRepository = DashBoardDAL.Repositories.TeamRepository;
 using TeamService = BLL.Services.TeamService;
+using ContentRepository = DashBoardDAL.Repositories.ContentRepository;
+using ContentService = BLL.Services.ContentService;
+using BoardRepository = DashBoardDAL.Repositories.BoardRepository;
+using BoardService = BLL.Services.BoardService;
+using ProjectRepository = DashBoardDAL.Repositories.ProjectRepository;
+using ProjectService = BLL.Services.ProjectService;
 
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +43,12 @@ namespace DashBoardAPI
             services.AddTransient(typeof(UserService));
             services.AddTransient(typeof(TeamRepository));
             services.AddTransient(typeof(TeamService));
+            services.AddTransient(typeof(ContentRepository));
+            services.AddTransient(typeof(ContentService)); 
+            services.AddTransient(typeof(BoardRepository));
+            services.AddTransient(typeof(BoardService));
+              services.AddTransient(typeof(ProjectRepository));
+            services.AddTransient(typeof(ProjectService));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
