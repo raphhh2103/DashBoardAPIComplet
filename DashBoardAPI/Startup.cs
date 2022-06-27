@@ -1,13 +1,8 @@
 using DashBoardAPI.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-<<<<<<< HEAD
-using BllOwnerService = BLL.Services.UserService;
-using DalOwnerService = DashBoardDAL.Repositories.UserRepository;
-=======
 using UserRepository = DashBoardDAL.Repositories.UserRepository;
 using UserService = BLL.Services.UserService; 
->>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
 
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -36,14 +31,8 @@ namespace DashBoardAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IContext>(m => new Context.Context());
-<<<<<<< HEAD
-            services.AddTransient(typeof(BllOwnerService));
-            services.AddTransient(typeof(DalOwnerService));
-
-=======
             services.AddTransient(typeof(UserRepository));
             services.AddTransient(typeof(UserService));
->>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

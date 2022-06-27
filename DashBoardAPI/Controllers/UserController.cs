@@ -17,12 +17,6 @@ namespace DashBoardAPI.Controllers
     [Route("User")]
     public class UserController : ControllerBase
     {
-        //Context.Context c = new Context.Context();
-        private readonly UserService _userService;
-        public UserController(UserService userService)
-        {
-            _userService = userService;
-        }
         private readonly UserService _userService;
 
         public UserController( UserService userService)
@@ -38,9 +32,6 @@ namespace DashBoardAPI.Controllers
             byte[] salt = Crypto.GenerateSalt();
             UserBLL u = user.ToBll();
 
-            u.PassWord = Crypto.AshPassword(salt, user.PassWord);
-
-            _userService.Create(u.T, salt);
             u.PassWord = Crypto.AshPassword(s, user.PassWord);
 
             _userService.Create(u, s);
@@ -56,14 +47,6 @@ namespace DashBoardAPI.Controllers
         [HttpGet]
         public IActionResult GetAllUser()
         {
-            return Ok(_userService.GetAll());
-        }
-
-        //[HttpPut("{user}")]
-        //public IActionResult UpdateUser(UserEntity user)
-        //{
-            
-        //    ur.Update(user);
             
             IEnumerable<UserAPI> userAllData = _userService.GetAll().Select(u=>u.ToApi());
             IEnumerable<object> userEssentialData = userAllData.Select(u => new {u.Id ,u.Email,u.Pseudo,});

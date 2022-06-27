@@ -32,11 +32,7 @@ namespace DashBoardDAL.Repositories
             }
             BoardRepository br = new BoardRepository();
             BoardEntity be = br.Create("default", entity);
-<<<<<<< HEAD
-            return entity;
-=======
             return true;
->>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
 
         }
         /// <summary>
@@ -63,13 +59,6 @@ namespace DashBoardDAL.Repositories
         /// <returns></returns>
         public IEnumerable<UserEntity> GetAll()
         {
-<<<<<<< HEAD
-            List<UserEntity> user = new List<UserEntity>();
-            using (DBConnect db = new DBConnect())
-            {
-                //userList= db.User.AsQueryable().ToList();
-                user = db.User.ToList();
-=======
             List<UserEntity> r = new List<UserEntity>();
             //List<TeamEntity> team = new List<TeamEntity>();
             //TeamRepository tr = new TeamRepository();
@@ -88,7 +77,6 @@ namespace DashBoardDAL.Repositories
                 //        }
                 //    }
                 //}
->>>>>>> 9b4b8d11ee1ac5294b585e0a2a82d2e118d303b0
             }
             return user;
         }
