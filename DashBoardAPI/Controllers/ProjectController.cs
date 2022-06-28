@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DashBoardAPI.Controllers
 {
+    [ApiController]
+    [Route("Project")]
     public class ProjectController : ControllerBase
     {
 
@@ -34,7 +36,7 @@ namespace DashBoardAPI.Controllers
         {
             return Ok(_projectService.GetAll());
         }
-        [HttpPut("{project}")]
+        [HttpPut("/{project}")]
         public IActionResult UpdateProject(ProjectEntity project)
         {
             _projectService.Update(project);
