@@ -19,5 +19,6 @@ namespace DashBoardDAL.Entities
         public IEnumerable<ContentEntity> Contents { get; set; }
 
 
+
     }
 }

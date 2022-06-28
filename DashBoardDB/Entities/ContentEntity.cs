@@ -14,6 +14,7 @@ namespace DashBoardDAL.Entities
         public string Text { get; set; }
 
         public BoardEntity TitleBoard { get; set; }
+
         public int BoardId { get; set; }
 
     }
