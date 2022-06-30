@@ -13,9 +13,8 @@ namespace DashBoardDAL.Repositories
         {
             BoardEntity b = new BoardEntity();
             b.Title = title;
-            b.Contents = new List<ContentEntity>();
-            b.UserOwnerId = user.Id;
-           
+            //b.UserOwnerId = user.Id;
+
             //b.t
             using (DBConnect db = new DBConnect())
             {
@@ -54,7 +53,7 @@ namespace DashBoardDAL.Repositories
         {
 
             BoardEntity b = new BoardEntity();
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 b = db.Board.Where(d => d.Id == id).FirstOrDefault();
 
@@ -66,11 +65,11 @@ namespace DashBoardDAL.Repositories
 
         public bool Update(BoardEntity entity)
         {
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 db.Board.Update(entity);
             }
-                return true;
+            return true;
         }
     }
 }

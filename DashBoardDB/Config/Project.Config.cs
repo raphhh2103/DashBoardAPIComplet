@@ -9,15 +9,22 @@ using System.Threading.Tasks;
 
 namespace DashBoardDAL.Config
 {
-    internal class ProjectConfig : IEntityTypeConfiguration<TeamEntity>
+    internal class ProjectConfig : IEntityTypeConfiguration<ProjectEntity>
     {
-        public void Configure(EntityTypeBuilder<TeamEntity> builder)
+        public void Configure(EntityTypeBuilder<ProjectEntity> builder)
         {
-            builder.ToTable(nameof(TeamEntity));
-            builder.HasKey(t => t.Id).HasName("PK_Team ");  
-            builder.Property(t => t.Name);
 
-            builder.HasMany<UserEntity>(p => p.TeamUsers).WithMany(g => g.Teams);
+            builder.ToTable("Project");
+
+            builder.Property(p => p.NameProject);
+
+
+
+            //builder.ToTable(nameof(TeamEntity));
+            //builder.HasKey(t => t.Id).HasName("PK_Team ");  
+            //builder.Property(t => t.Name);
+
+            //builder.HasMany<UserEntity>(p => p.TeamUsers).WithMany(g => g.Teams);
             
         }
     }

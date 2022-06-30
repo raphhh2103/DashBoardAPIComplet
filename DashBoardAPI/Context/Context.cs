@@ -12,18 +12,18 @@ namespace DashBoardAPI.Context
         public ProjectEntity Project { get; set; }
         public ContentEntity Content { get; set; }
         public BoardEntity Board { get; set; }
-        private UserRepository ur;
+        //private UserRepository ur;
 
 
         public Context()
         {
-            User = new UserEntity()
-            {
-                Pseudo = "Test",
-                PssWd = "Test1234=",
-                Email="test@test.be"
-            };
-             ur = new UserRepository();
+            //User = new UserEntity()
+            //{
+            //    Pseudo = "Test",
+            //    //Passwd = "Test1234=",
+            //    Email="test@test.be"
+            //};
+            // ur = new UserRepository();
         }
 
         public void CreateUser(UserEntity u)
@@ -34,7 +34,7 @@ namespace DashBoardAPI.Context
        public void GetOneUser(int id)
         {
 
-            ur.GetOne(id);
+            //ur.GetOne(id);
         }
     }
 }

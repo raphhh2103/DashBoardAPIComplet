@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DashBoardDAL.Repositories
 {
-    public class UserRepository : IRepository<UserEntity>
+    public class UserRepository /*: IRepository<UserEntity>*/
     {
         /// <summary>
         /// creation d'un user  
@@ -16,7 +16,7 @@ namespace DashBoardDAL.Repositories
         /// <param name="pseudo"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public UserEntity Create(UserEntity entity/*, IEnumerable<TeamEntity> teams*/)
+        public UserEntity/*void*/ Create(UserEntity entity/*, IEnumerable<TeamEntity> teams*/)
         {
 
             //  TeamRepository tr = new TeamRepository() ;
@@ -42,7 +42,7 @@ namespace DashBoardDAL.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool Delete(int id)
+        public void Delete(int id)
         {
             using (DBConnect db = new DBConnect())
             {
@@ -52,13 +52,13 @@ namespace DashBoardDAL.Repositories
                     db.Remove(g);
             }
 
-            return true;
+            //return true;
         }
         /// <summary>
         /// recupere tout les users 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UserEntity> GetAll()
+        public IEnumerable<UserEntity> /*void*/ GetAll()
         {
             List<UserEntity> r = new List<UserEntity>();
             //List<TeamEntity> team = new List<TeamEntity>();
@@ -67,7 +67,7 @@ namespace DashBoardDAL.Repositories
             using (DBConnect db = new DBConnect())
             {
                 r = db.User.AsQueryable().ToList();
-   
+
             }
             return r;
         }
@@ -76,7 +76,7 @@ namespace DashBoardDAL.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public UserEntity GetOne(int id)
+        public UserEntity/*void*/ GetOne(int id)
         {
             UserEntity user = new UserEntity();
             //BoardRepository br = new BoardRepository();
@@ -86,14 +86,14 @@ namespace DashBoardDAL.Repositories
                 user = db.User.Find(id);
                 //t.Boards = (ICollection<BoardEntity>)db.Board.Find(t.Id);
 
-                // t = db.User.Where(a => a.Id == id).FirstOrDefault();
+                //t = db.User.Where(a => a.Id == id).FirstOrDefault();
                 ///* t.Boards =*/
-                // var test = db.Board.Select(r=>r.UserOwnerId).ToList()/*.where( q=>q.Id ==   )*/;
+                //var test = db.Board.Select(r => r.UserOwnerId).ToList()/*.where( q=>q.Id ==   )*/;
 
             }
             //if (t.Boards is not null)
             //{
-                return user;
+            return user;
             //}
             //return null;
         }
@@ -103,7 +103,7 @@ namespace DashBoardDAL.Repositories
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public bool Update(UserEntity entity)
+        public bool/*void*/ Update(UserEntity entity)
         {
             using (DBConnect db = new DBConnect())
             {

@@ -9,18 +9,35 @@ using System.Threading.Tasks;
 
 namespace DashBoardDAL.Config
 {
-    internal class ContentConfig : Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<ContentEntity>
+    internal class ContentConfig :IEntityTypeConfiguration<ContentEntity>
     {
         public void Configure(EntityTypeBuilder<ContentEntity> builder)
         {
-            builder.ToTable(nameof(ContentEntity));
-
-            builder.HasKey(x => x.Id).HasName("PK_Content");
-
-            builder.Property(x => x.Text).HasMaxLength(500);
 
 
-            builder.HasOne<BoardEntity>(g => g.TitleBoard).WithMany(w=>w.Contents).HasForeignKey(x => x.BoardId);
+            builder.ToTable("Content");
+
+            builder.Property(b => b.Text)
+                .IsRequired()
+                .HasMaxLength(500);
+
+            builder.Property(b=>b.BoardId)
+                .IsRequired();
+
+
+
+
+
+
+
+            //builder.ToTable(nameof(ContentEntity));
+
+            //builder.HasKey(x => x.Id).HasName("PK_Content");
+
+            //builder.Property(x => x.Text).HasMaxLength(500);
+
+
+            //builder.HasOne<BoardEntity>(g => g.TitleBoard).WithMany(w=>w.Contents).HasForeignKey(x => x.BoardId);
 
 
 

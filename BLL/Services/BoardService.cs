@@ -15,7 +15,8 @@ namespace BLL.Services
         public BoardBLL GetOne(int id)
         {
             BoardRepository br = new BoardRepository();
-            return br.GetOne(id).ToBll();
+            //return br.GetOne(id).ToBll();
+            return null;
         }
 
         public void Create(string title, UserBLL userOwner)

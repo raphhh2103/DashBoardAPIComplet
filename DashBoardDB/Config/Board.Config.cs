@@ -13,15 +13,26 @@ namespace DashBoardDAL.Config
     {
         public void Configure(EntityTypeBuilder<BoardEntity> builder)
         {
-            builder.ToTable(nameof(BoardEntity));
 
-            builder.HasKey(x => x.Id).HasName("PK_Board");
+            builder.ToTable("Board");
+
+            builder.Property(b=>b.Title)
+                .IsRequired()
+                .HasMaxLength(50);
+
+
+
+
+
+            //builder.ToTable(nameof(BoardEntity));
+
+            //builder.HasKey(x => x.Id).HasName("PK_Board");
             
 
-            builder.HasIndex(x => x.Title);
+            //builder.HasIndex(x => x.Title);
 
 
-            builder.HasOne<UserEntity>(t=>t.UserOwner).WithMany(x => x.Boards).HasForeignKey(x => x.UserOwnerId);
+            //builder.HasOne<UserEntity>(t=>t.UserOwner).WithMany(x => x.Boards).HasForeignKey(x => x.UserOwnerId);
 
             //builder.HasMany<ContentEntity>(d => d.Contents).WithOne(d => d.TitleBoard).HasForeignKey(x => x.BoardId);
             

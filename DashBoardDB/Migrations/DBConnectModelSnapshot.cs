@@ -27,19 +27,18 @@ namespace DashBoardDAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(450)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserOwnerId")
+                    b.Property<int?>("UserOwnerId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Board");
-
-                    b.HasIndex("Title");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserOwnerId");
 
-                    b.ToTable("BoardEntity");
+                    b.ToTable("Board");
                 });
 
             modelBuilder.Entity("DashBoardDAL.Entities.ContentEntity", b =>
@@ -53,15 +52,18 @@ namespace DashBoardDAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Content");
+                    b.Property<int?>("TitleBoardId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("BoardId");
+                    b.HasKey("Id");
 
-                    b.ToTable("ContentEntity");
+                    b.HasIndex("TitleBoardId");
+
+                    b.ToTable("Content");
                 });
 
             modelBuilder.Entity("DashBoardDAL.Entities.ProjectEntity", b =>
@@ -87,13 +89,13 @@ namespace DashBoardDAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id")
-                        .HasName("PK_Team ");
+                    b.HasKey("Id");
 
-                    b.ToTable("TeamEntity");
+                    b.ToTable("Team");
                 });
 
             modelBuilder.Entity("DashBoardDAL.Entities.UserEntity", b =>
@@ -101,13 +103,17 @@ namespace DashBoardDAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("IdUser")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("nvarchar(254)");
+                        .HasMaxLength(384)
+                        .HasColumnType("nvarchar(384)");
+
+                    b.Property<byte[]>("Passwd")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("varbinary(512)");
 
                     b.Property<int?>("ProjectEntityId")
                         .HasColumnType("int");
@@ -117,28 +123,16 @@ namespace DashBoardDAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PssWd")
+                    b.Property<byte[]>("SaltKey")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("varbinary(16)");
 
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id")
-                        .HasName("PK_User");
-
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasDatabaseName("UK_Email");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectEntityId");
 
-                    b.HasIndex("Pseudo")
-                        .IsUnique()
-                        .HasDatabaseName("UK_Pseudo");
-
-                    b.ToTable("UserEntity");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("TeamEntityUserEntity", b =>
@@ -160,9 +154,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.UserEntity", "UserOwner")
                         .WithMany("Boards")
-                        .HasForeignKey("UserOwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserOwnerId");
 
                     b.Navigation("UserOwner");
                 });
@@ -171,9 +163,7 @@ namespace DashBoardDAL.Migrations
                 {
                     b.HasOne("DashBoardDAL.Entities.BoardEntity", "TitleBoard")
                         .WithMany("Contents")
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TitleBoardId");
 
                     b.Navigation("TitleBoard");
                 });

@@ -21,22 +21,24 @@ namespace BLL.Services
 
         public ContentEntity Create(ContentBLL be, string text)
         {
-           return _contentRepository.Create(be.ToEntity(), text);
+            //return _contentRepository.Create(be.ToEntity(), text);
+            return null;
         }
 
         public object GetAll()
         {
-            throw new NotImplementedException();
+            return null ;
         }
 
         public void Update(ContentEntity content)
         {
-            throw new NotImplementedException();
+            
         }
 
         public ContentBLL GetOne(int id)
         {
-           return _contentRepository.GetOne(id).ToApi();
+            //return _contentRepository.GetOne(id).ToApi();
+            return null;
         }
     }
 }

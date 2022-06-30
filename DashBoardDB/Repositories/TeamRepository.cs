@@ -52,7 +52,7 @@ namespace DashBoardDAL.Repositories
         public IEnumerable<TeamEntity> GetAll()
         {
             List<TeamEntity> t = new List<TeamEntity>();
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 t = db.team.AsQueryable().ToList();
             }
@@ -71,7 +71,7 @@ namespace DashBoardDAL.Repositories
                 m = db.team.Include(t => t.TeamUsers).Where(p => p.Id == id).FirstOrDefault();
 
             }
-                return m;
+            return m;
         }
         /// <summary>
         /// 
@@ -80,11 +80,11 @@ namespace DashBoardDAL.Repositories
         /// <returns></returns>
         public bool Update(TeamEntity entity)
         {
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 db.team.Update(entity);
             }
-                return true;
+            return true;
         }
     }
 }

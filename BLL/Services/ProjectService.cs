@@ -22,24 +22,28 @@ namespace BLL.Services
 
         public ProjectBLL GetOne(int Id)
         {
-            return _projectRepository.GetOne(Id).ToApi();
+            //return _projectRepository.GetOne(Id).ToApi();
+            return null;
         }
 
         public ProjectBLL Create(string nameProject)
         {
-            return _projectRepository.Create(nameProject).ToApi();
+            //return _projectRepository.Create(nameProject).ToApi();
+            return null;
         }
 
         public IEnumerable<ProjectBLL> GetAll()
         {
-            return _projectRepository.GetAll().Select(p => p.ToApi());
+            //return _projectRepository.GetAll().Select(p => p.ToApi());
+            return null;
 
         }
 
         public void Update(ProjectEntity project)
         {
 
-            _projectRepository.Update(project);
+            //_projectRepository.Update(project);
+            //return null;
         }
     }
 }

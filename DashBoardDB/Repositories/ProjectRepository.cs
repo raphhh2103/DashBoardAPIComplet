@@ -15,7 +15,7 @@ namespace DashBoardDAL.Repositories
 
             p.NameProject = nameProject;
             p.TeamsUsers = new List<UserEntity>();
-            using(DBConnect db= new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 db.Project.Add(p);
                 db.SaveChanges();

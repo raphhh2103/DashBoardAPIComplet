@@ -16,23 +16,23 @@ namespace DashBoardDAL.Repositories
         /// <param name="title"></param>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public ContentEntity Create(ContentEntity title,string txt)
+        public ContentEntity Create(ContentEntity title, string txt)
         {
             ContentEntity c = new ContentEntity();
             c.TitleBoard = title.TitleBoard;
             c.Text = txt;
-            
-            using(DBConnect db =  new DBConnect())
+
+            using (DBConnect db = new DBConnect())
             {
                 db.Content.Add(c);
                 db.SaveChanges();
             }
-                return c;
+            return c;
         }
-  
+
         public bool Delete(int id)
         {
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 ContentEntity g = db.Content.Where(f => f.Id == id).FirstOrDefault();
                 db.Remove(g);
@@ -65,7 +65,7 @@ namespace DashBoardDAL.Repositories
 
         public bool Update(ContentEntity entity)
         {
-            using(DBConnect db = new DBConnect())
+            using (DBConnect db = new DBConnect())
             {
                 db.Content.Update(entity);
                 return true;
