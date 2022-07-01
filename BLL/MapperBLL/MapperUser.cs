@@ -16,7 +16,7 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="userBLL"></param>
         /// <returns> UserEntity</returns>
-        public static UserEntity ToEntity(this UserBLL userBLL)
+        public static UserEntity ToEntity(this UserBLL userBLL)// vers la db 
         {
             UserEntity res = new UserEntity();
 
@@ -32,7 +32,7 @@ namespace BLL.MapperBLL
         /// </summary>
         /// <param name="userEntity"></param>
         /// <returns>UserApi</returns>
-        public static UserBLL ToBLL(this UserEntity userEntity)
+        public static UserBLL ToBLL(this UserEntity userEntity)// vers la BLL 
         {
             UserBLL userBLL = new UserBLL();
             userBLL.Id = userEntity.Id;
