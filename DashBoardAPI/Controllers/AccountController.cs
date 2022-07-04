@@ -35,27 +35,39 @@ namespace DashBoardAPI.Controllers
 
             user = _accountService.VerifyUser(userLogins.ToUser()).ToApi();
             if (user != null)
-            str = Crypto.AshPassword(Encoding.ASCII.GetBytes(user.Salt), userLogins.Password);
+            {
+                str = Crypto.AshPassword(Encoding.ASCII.GetBytes(user.Salt), userLogins.Password);
                 return Ok();
 
 
-
+            }
 
             if (str == user.PassWord)
                 return Ok();
 
             else
+            {
+
+            }
                 return BadRequest("error password");
-                /*
-             
-             - verifier si les mdp sont les meme une fois acher avec la meme clef de salage 
-             -
-             
-             */
+            /*
+         - checker si l'utilisateur existe selon email ou pseudo 
+            {
+            - verfier le mdp avec la clef de salage de l'utilisateur recuperer ! 
+            }
+         - verifier si les mdp sont les meme une fois acher avec la meme clef de salage 
+            {
+                -  checker la ou c'est le plus simple pour eviter de faire traverser le mdp en clair dans toutes l'app x)
+            }
+         - generer le token pour l'utilisateur 
+         - bloquer l'acces a tout ce qui existe si pas de token !!!! 
+         - deplacer la connection string pour secure le machin , 
+         - attaquer le front end ? en blazor
+         */
 
 
 
-            return Ok();
+            //return Ok();
 
         }
 
