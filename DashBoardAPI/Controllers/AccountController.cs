@@ -65,8 +65,6 @@ namespace DashBoardAPI.Controllers
          - attaquer le front end ? en blazor
          */
 
-
-
             //return Ok();
 
         }

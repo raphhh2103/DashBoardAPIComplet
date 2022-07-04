@@ -63,7 +63,6 @@ namespace DashBoardDAL.Services
                     }
                     else
                     {
-
                         throw new Exception();
                     }
                     return user;
