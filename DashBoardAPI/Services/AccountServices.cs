@@ -2,6 +2,7 @@
 using BLL.Services;
 using DashBoardAPI.MapperAPI;
 using DashBoardAPI.ModelsAPI;
+using System;
 
 namespace DashBoardAPI.Services
 {
@@ -15,5 +16,9 @@ namespace DashBoardAPI.Services
             return _accountServiceBll.VerifyUser(auth.ToBll());
         }
 
+        internal UserAPI GetOwnerCredentials(string credentialToVerify)
+        {
+            return _accountServiceBll.GetOwnerCredentials(credentialToVerify).ToApi();
+        }
     }
 }

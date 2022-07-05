@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JwtBehavior.Auth
 {
-    internal class Account
+    public class Account
     {
         public int Id { get; set; }
         public string Email { get; set; }

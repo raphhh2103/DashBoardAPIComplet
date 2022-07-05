@@ -20,5 +20,10 @@ namespace BLL.Services
             //user = new UserBLL();
             return _accountServiceDAL.VerifyUser(auth.ToEntity()).ToBLL();
         }
+
+        public object GetOwnerCredentials(string credentialToVerify)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

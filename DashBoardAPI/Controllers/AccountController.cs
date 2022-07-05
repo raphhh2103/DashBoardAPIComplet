@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using JwtBehavior.Auth;
 using DashBoardAPI.Services;
 using DashBoardAPI.ModelsAPI;
+using jwt = JwtBehavior.JwtHelpers;
 using BLL.MapperBLL;
 using DashBoardAPI.MapperAPI;
 using System.Text;
@@ -36,28 +37,40 @@ namespace DashBoardAPI.Controllers
             user = _accountService.VerifyUser(userLogins.ToUser()).ToApi();
             if (user != null)
             {
-                str = Crypto.AshPassword(Encoding.ASCII.GetBytes(user.Salt), userLogins.Password);
-                return Ok();
+                str = userLogins.Password;
+                userLogins.Password = Crypto.AshPassword(Crypto.GenerateSalt(), userLogins.Password);
+                userLogins.Password = Crypto.AshPassword(Encoding.ASCII.GetBytes(user.Salt), str);
 
 
+                if (userLogins.Password == user.PassWord)
+                {
+                    UserTokens token = new UserTokens();
+                    Account accountCredential = getCredentials.GetOwnerCredential(userLogins.Email);
+
+                    //token = jwt.JwtHelpers.GenTokenkey(new UserTokens()
+                    //{
+                    //    Id = (int)userLogins.
+                    //} );
+
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("mot de passe incorrect ");
+                }
             }
-
-            if (str == user.PassWord)
-                return Ok();
-
             else
             {
-
+                return BadRequest("une erreur est survenue ! ");
             }
-                return BadRequest("error password");
             /*
-         - checker si l'utilisateur existe selon email ou pseudo 
+         //- checker si l'utilisateur existe selon email ou pseudo 
             {
-            - verfier le mdp avec la clef de salage de l'utilisateur recuperer ! 
+          //  - verfier le mdp avec la clef de salage de l'utilisateur recuperer ! 
             }
-         - verifier si les mdp sont les meme une fois acher avec la meme clef de salage 
+         //- verifier si les mdp sont les meme une fois acher avec la meme clef de salage 
             {
-                -  checker la ou c'est le plus simple pour eviter de faire traverser le mdp en clair dans toutes l'app x)
+            //    -  checker la ou c'est le plus simple pour eviter de faire traverser le mdp en clair dans toutes l'app x)
             }
          - generer le token pour l'utilisateur 
          - bloquer l'acces a tout ce qui existe si pas de token !!!! 
