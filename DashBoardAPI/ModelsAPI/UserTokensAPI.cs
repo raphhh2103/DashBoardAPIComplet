@@ -1,6 +1,6 @@
 ﻿namespace DashBoardAPI.ModelsAPI
 {
-    public class UserTokens
+    public class UserTokensAPI
     {
         public string Token { get; set; }
         public bool IsOwner { get; set; }

@@ -44,13 +44,17 @@ namespace DashBoardAPI
             services.AddTransient(typeof(TeamRepository));
             services.AddTransient(typeof(TeamService));
             services.AddTransient(typeof(ContentRepository));
-            services.AddTransient(typeof(ContentService)); 
+            services.AddTransient(typeof(ContentService));
             services.AddTransient(typeof(BoardRepository));
             services.AddTransient(typeof(BoardService));
-              services.AddTransient(typeof(ProjectRepository));
+            services.AddTransient(typeof(ProjectRepository));
             services.AddTransient(typeof(ProjectService));
 
             services.AddControllers();
+            
+            //var builder = 
+            //string tokenKey = services.Configuration["jwt:key"];
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DashBoardAPI", Version = "v1" });
@@ -66,6 +70,8 @@ namespace DashBoardAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DashBoardAPI v1"));
             }
+            app.UseStaticFiles();
+            
 
             app.UseHttpsRedirection();
 
@@ -77,6 +83,8 @@ namespace DashBoardAPI
             {
                 endpoints.MapControllers();
             });
+
+           
         }
     }
 }

@@ -51,10 +51,13 @@ namespace DashBoardAPI.Controllers
                     UserTokens token = new UserTokens();
                     Account accountCredential = getCredentials.GetOwnerCredential(userLogins.Email);
 
-                    //token = jwt.JwtHelpers.GenTokenkey(new UserTokens()
-                    //{
-                    //    Id = (int)userLogins.
-                    //} );
+                    token = jwt.JwtHelpers.GenTokenkey(new UserTokens()
+                    {
+                        Id = (int)accountCredential.Id,
+                        Pseudo = accountCredential.Pseudo,
+                        Email = accountCredential.Email,
+                        IsOwner = false
+                    },_jwtSetting);
 
                     return Ok();
                 }

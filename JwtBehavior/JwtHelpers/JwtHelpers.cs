@@ -12,7 +12,7 @@ namespace JwtBehavior.JwtHelpers
 {
     public static class JwtHelpers
     {
-        static IEnumerable<Claim> GetClaims(this UserTokens userAccounts)
+       public static IEnumerable<Claim> GetClaims(this UserTokens userAccounts)
         {
             IEnumerable<Claim> claims = new Claim[]
             {
@@ -26,7 +26,7 @@ namespace JwtBehavior.JwtHelpers
             return claims;
         }
 
-        static UserTokens GenTokenkey(UserTokens model, JwtSettings jwtSettings)
+       public static UserTokens GenTokenkey(UserTokens model, JwtSettings jwtSettings)
         {
             try
             {

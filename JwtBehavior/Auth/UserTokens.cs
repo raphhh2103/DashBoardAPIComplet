@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JwtBehavior.Auth
 {
-    internal class UserTokens
+    public class UserTokens
     {
         public string Token { get; set; }
         public bool IsOwner { get; set; }
