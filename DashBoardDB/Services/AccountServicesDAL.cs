@@ -10,6 +10,17 @@ namespace DashBoardDAL.Services
 {
     public class AccountServicesDAL
     {
+        public UserEntity GetOwnerCredentialsDAL( string credentialToVerify)
+        {
+            UserEntity result = new UserEntity();
+
+            using(DBConnect db = new DBConnect())
+            {
+                db.User.First<UserEntity>(u => u.Pseudo == credentialToVerify);
+            }
+
+            return result;
+        }
 
         //public string VerifyUser(UserEntity auth, out UserEntity user)
         //{

@@ -1,5 +1,6 @@
 ﻿using JwtBehavior.Auth;
 using BLL.MapperBLL;
+using DashBoardAPI.ModelsAPI;
 
 namespace DashBoardAPI.Services
 {
@@ -15,7 +16,7 @@ namespace DashBoardAPI.Services
 
         public Account GetOwnerCredential(string credentialToVerify)
         {
-            Account ownerCredential = _accountServices.GetOwnerCredentials(credentialToVerify);
+            Account ownerCredential = _accountServices.GetOwnerCredentials(credentialToVerify).ToAccount();
 
             return ownerCredential;
         }

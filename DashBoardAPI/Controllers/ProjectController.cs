@@ -1,11 +1,13 @@
 ﻿using BLL.Services;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("Project")]
     public class ProjectController : ControllerBase
     {

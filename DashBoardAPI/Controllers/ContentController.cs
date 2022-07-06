@@ -2,11 +2,13 @@
 using DashBoardAPI.MapperAPI;
 using DashBoardAPI.ModelsAPI;
 using DashBoardDAL.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("Content")]
     public class ContentController : ControllerBase
     {

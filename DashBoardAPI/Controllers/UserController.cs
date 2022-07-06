@@ -6,6 +6,7 @@ using DashBoardAPI.ModelsAPI;
 using DashBoardAPI.Services;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Linq;
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("User")]
     public class UserController : ControllerBase
     {

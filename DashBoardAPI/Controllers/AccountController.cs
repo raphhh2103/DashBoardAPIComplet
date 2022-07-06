@@ -11,16 +11,20 @@ using System.Text;
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+
+    [Route(@"\")]
     public class AccountController : ControllerBase
     {
         private readonly JwtSettings _jwtSetting;
         private readonly AccountServices _accountService;
+        GetCredentials getCredentials;
 
 
         public AccountController(JwtSettings jwtSettings, AccountServices accountServices)
         {
             this._jwtSetting = jwtSettings;
             this._accountService = accountServices;
+            this.getCredentials = new GetCredentials(_accountService);
         }
 
         public IActionResult GetAuth(UserLogins userLogins)

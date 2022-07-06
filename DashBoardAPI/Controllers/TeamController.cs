@@ -4,10 +4,12 @@ using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using DashBoardAPI.MapperAPI;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("Team")]
     public class TeamController : ControllerBase
     {

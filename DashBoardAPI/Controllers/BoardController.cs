@@ -3,12 +3,14 @@ using DashBoardAPI.MapperAPI;
 using DashBoardAPI.ModelsAPI;
 using DashBoardDAL.Entities;
 using DashBoardDAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("Board")]
     public class BoardController : ControllerBase
     {

@@ -11,11 +11,21 @@ namespace DashBoardAPI.ModelsAPI
                Email = login.Email,
                 PassWord = login.Password,
                 Pseudo = login.pseudo
+                
            };
             
             
         }
 
+        public static Account ToAccount( this UserAPI model)
+        {
+            return new Account()
+            {
+                Email = model.Email,
+                Pseudo = model.Pseudo,
+                Id = model.Id
+            };
+        }
 
     }
 }
