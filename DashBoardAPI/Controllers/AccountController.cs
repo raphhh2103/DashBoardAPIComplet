@@ -12,7 +12,7 @@ namespace DashBoardAPI.Controllers
 {
     [ApiController]
 
-    [Route(@"\")]
+    [Route(@"index")]
     public class AccountController : ControllerBase
     {
         private readonly JwtSettings _jwtSetting;
