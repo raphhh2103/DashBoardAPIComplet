@@ -12,7 +12,7 @@ namespace DashBoardAPI.Controllers
 {
     [ApiController]
 
-    [Route(@"index")]
+    [Route("index")]
     public class AccountController : ControllerBase
     {
         private readonly JwtSettings _jwtSetting;
@@ -27,6 +27,7 @@ namespace DashBoardAPI.Controllers
             this.getCredentials = new GetCredentials(_accountService);
         }
 
+        [HttpPost]
         public IActionResult GetAuth(UserLogins userLogins)
         {
             //if (_accountService.VerifyUser(userLogins.ToUser()) == "email ou pseudo incorrect")

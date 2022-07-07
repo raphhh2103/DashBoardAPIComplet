@@ -10,7 +10,10 @@ namespace DashBoardAPI.Services
     {
         private readonly AccountServiceBll _accountServiceBll;
 
-
+        public AccountServices(AccountServiceBll accountService)
+        {
+            this._accountServiceBll = accountService;
+        }
         public UserBLL VerifyUser(UserAPI auth)
         {
             return _accountServiceBll.VerifyUser(auth.ToBll());
