@@ -2,6 +2,8 @@
 using DashBoardAPI.ModelsAPI;
 using System.Linq;
 using System.Collections.Generic;
+using System;
+using System.Text;
 
 namespace DashBoardAPI.MapperAPI
 {
@@ -12,8 +14,8 @@ namespace DashBoardAPI.MapperAPI
             return new UserAPI() {
                 Id = model.Id,
                 Pseudo = model.Pseudo,
-                PassWord = model.PassWord,
-                Salt = model.Salt,
+                PassWord = Convert.ToBase64String(model.PassWord),
+                Salt = Convert.ToBase64String(model.Salt),
                 Email = model.Email,
                 Boards = (ICollection<BoardAPI>)model.Boards,
                 Teams = (ICollection<TeamAPI>)model.Teams,
@@ -29,8 +31,8 @@ namespace DashBoardAPI.MapperAPI
             {
                 Id = model.Id,
                 Pseudo = model.Pseudo,
-                PassWord = model.PassWord,
-                Salt = model.Salt, 
+                PassWord = Encoding.ASCII.GetBytes( model.PassWord),
+                Salt = Encoding.ASCII.GetBytes(model.Salt), 
                 Email = model.Email,
                 Boards = (ICollection<BoardBLL>)model.Boards,
                 Teams = (ICollection<TeamBLL>)model.Teams,

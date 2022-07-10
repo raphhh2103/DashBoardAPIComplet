@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DashBoardAPI.Controllers
 {
@@ -30,9 +31,9 @@ namespace DashBoardAPI.Controllers
         public IActionResult UserCreate(UserAPI user)
         {
             byte[] salt = Crypto.GenerateSalt();
+            user.Salt = Convert.ToBase64String(salt);
             UserBLL u = user.ToBll();
-
-            u.PassWord = Crypto.AshPassword(salt, user.PassWord);
+            u.PassWord = Encoding.ASCII.GetBytes( Crypto.AshPassword(salt, user.PassWord));
 
             _userService.Create(u, salt);
 

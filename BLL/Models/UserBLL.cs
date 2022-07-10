@@ -11,9 +11,9 @@ namespace BLL.Models
 
         public string Email { get; set; }
 
-        public string PassWord { get; set; }
+        public byte[] PassWord { get; set; }
         //public byte[] Salt { get; set; }
-        public string Salt { get; set; }
+        public byte[] Salt { get; set; }
 
         //public int Boards { get; set; }
         public ICollection<BoardBLL> Boards { get; set; }
