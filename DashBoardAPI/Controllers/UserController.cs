@@ -15,7 +15,6 @@ using System.Linq;
 namespace DashBoardAPI.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("User")]
     public class UserController : ControllerBase
     {

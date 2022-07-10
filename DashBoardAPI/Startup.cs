@@ -78,6 +78,7 @@ namespace DashBoardAPI
                 {
                     ValidateIssuerSigningKey = BindJwtSettings.validateIssuerSigningKey,
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(BindJwtSettings.IssuerSigningKey)),
+
                     ValidateIssuer = BindJwtSettings.ValidateIssuer,
                     ValidIssuer = BindJwtSettings.ValidIssuer,
                     ValidateAudience = BindJwtSettings.ValidateAudience,

@@ -34,6 +34,7 @@ namespace BLL.Services
 
             //UserEntity entity = user.ToEntity();
             //entity.Salt = Encoding.UTF8.GetString(salt);
+            user.Salt = Convert.ToBase64String(salt);
             return _userService.Create(user.ToEntity()/*, user.Teams*/);
             //return null;
         }
